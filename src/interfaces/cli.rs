@@ -13,6 +13,7 @@ pub fn login_menu(master_password: &str, data: &mut Vec<Entry>) {
     let inserted_password = inserted_password.trim();
 
     if inserted_password == master_password {
+        read_data_from_disk(data);
         return main_menu(data);
     }
 
@@ -22,8 +23,6 @@ pub fn login_menu(master_password: &str, data: &mut Vec<Entry>) {
 pub fn main_menu(data: &mut Vec<Entry>) {
 
     clear_terminal();
-
-    read_data_from_disk(data);
 
     println!("Bem vindo ao seu sistema de gerenciamento de senhas");
 

@@ -1,6 +1,6 @@
 use std::io::stdin;
 
-use crate::{types::Entry, persistency::{save_data_to_disk, read_data_from_disk}};
+use crate::{types::Entry, persistency::{save_data_to_disk, read_data_from_disk}, suggest_password::suggest_strong_password};
 
 pub fn login_menu(master_password: &str, data: &mut Vec<Entry>) {
     clear_terminal();
@@ -72,12 +72,20 @@ pub fn new_password(data: &mut Vec<Entry>) {
     stdin().read_line(&mut username).expect("Por favor insira um valor válido");
 
     clear_terminal();
-    println!("Insira a senha a ser salva");
+    println!("Insira a senha a ser salva, deixe vazio para receber uma senha forte");
     stdin().read_line(&mut password).expect("Por favor insira um valor válido");
 
     let domain = domain.trim().to_string();
     let username = username.trim().to_string();
     let password = password.trim().to_string();
+
+    let password = {
+        if password.is_empty() {
+            suggest_strong_password()
+        } else {
+            password
+        }
+    };
 
     let new_entry = Entry {
         domain,

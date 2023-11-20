@@ -2,7 +2,7 @@ use rand::prelude::*;
 
 pub fn suggest_strong_password() -> String {
     
-    let mut senha: Vec<char> = Vec::with_capacity(10);
+    let mut senha: Vec<char> = Vec::with_capacity(12);
     let mut range = rand::thread_rng();
 
     for _ in 0..12 {

@@ -47,7 +47,7 @@
 //! Quando se trata de Structs, em Rust, elas tem um funcionamento similar a Classes, em linguagem orientadas a objetos.
 //! Por meio da keyword `impl` é possível implementar métodos nessas Structs, tanto métodos gerais, que  não necessitam de
 //! uma instância da Struct, quanto métodos específicos, que utlizam, ou modificam o objeto que chamou a função. Além
-//! disso, quando uma Struct é declarada em um módulo, ela pode especificar quais propriedades da Struct são publicas
+//! disso, quando uma Struct é declarada em um módulo, ela pode especificar quais posses da Struct são publicas
 //! e quais são privadas.
 //! 
 //! Em relação a Enums, Rust os suporta como uma das principais estruturas de dados da linguagem. Tendo isso em vista,
@@ -151,7 +151,7 @@
 //! da variável. Como isso pode causar efeito colateral, apenas um função pode acessar uma variável por referência mutável por
 //! vez, e não permite que a variável seja lida até que a função chamada resolva, para evitar efeitos colaterais negativos.
 //! 
-//! Passagem de propriedade:
+//! Passagem de posse:
 //! ```
 //! fn fun(a: i32) -> i32 {
 //!     a += 10;
@@ -163,7 +163,7 @@
 //!     println!("a : {};", &a);
 //! }
 //! ```
-//! Quando um função é chamada por passagem de propriedade, a função chamada vira a dona do valor passado, dessa forma, a função
+//! Quando um função é chamada por passagem de posse, a função chamada vira a dona do valor passado, dessa forma, a função
 //! chamadora perde acesso aquela variável e não consegue mais utilizar aquela variável.
 //! 
 //! Com essas 3 formas de passagem de parâmetros Rust deixa problemas com valores inesperados de variáveis algo basicamente impossível

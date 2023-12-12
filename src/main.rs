@@ -86,6 +86,10 @@
 //! 
 //! Em termos de expressividade e sintaxe Rust é bem similar a C, não deviando muito nem para pior ou para melhor.
 //! 
+//! Um outro ponto que auxilia muito na capacidade de escrita do Rust é o seu compilador. O Compilador Rust é muito bom
+//! em encontrar possíveis problemas no código, e quando ele mostra um erro, ele explicita aonde do código o erro foi
+//! cometido, e ainda dá dicas de como resolver o erro.
+//! 
 //! ### Confiabilidade
 //! 
 //! Confiabilidade é a área em que Rust mais se destaca, como o foco inteiro da linguagem é seguraça, muito trabalho
@@ -166,6 +170,46 @@
 //! de acontecer.
 //! 
 //! ### Custo
+//! 
+//! - Custo de treinamento:
+//!     - O Custo de treinamento em Rust é bem elevado, uma vez que é uma linguagem bem complexa, com muitos conceitos nãoobservados
+//!     em outras linguagens
+//! 
+//! - Custo para escrever programas
+//!     - Em Rust o custo para escrever programas é similar ao de C, talvez um pouco maior devido ao Borrow-checker, mas isso é
+//!     contrabalanceado pela maior legibilidade
+//! 
+//! - Custo para compilar programas
+//!     - A primeira compilação em Rust é mais demorada que em C, porém, devido a ótima ferramenta que é cargo, as próximas compilações
+//!     tendem a ser muito mais rápidas, devido ao cargo só compilar as partes modificadas do código.
+//! 
+//! - Custo para executar programas
+//!     - A performance de Rust é muito similar à de C.
+//! 
+//! - Custo do sistema de implementação da linguagem
+//!     - Rust e todas as ferramentas padrão utilizadas pela comunidade são open source, então o custo é zero.
+//! 
+//! - Custo da má confiabilidade em sistemas críticos
+//!     - Rust é uma das linguagens mais confiáveis utilizadas ultimamente, uma vez que ativamente proibe problemas que levam a bugs.
+//! 
+//! - Custo da manutenção dos programas
+//!     - Rust tem uma legibilidade maior que C, mas uma capacidade de escrita um pouco pior que C, então, no geral é mais fácil de
+//!     manter uma base de código em Rust do que em C.
+//! 
+//! ### Portabilidade
+//! 
+//! A portabilidade de Rust é similar a de C, ele deve ser compilado para cada plataforma na qual ele será utilizado, mas suporta
+//! quase todas as plataformas.
+//! 
+//! ### Generalidade
+//! 
+//! Neste quesito, eu diria que Rust é mais geral que C, uma vez que pode ser aplicado tanto no kernel linux e embarcados, até em
+//! aplicações web front-end com web assembly.
+//! 
+//! ### Qualidade da definição
+//! 
+//! Rust tem uma documentação fenomenal, e muitos conteudos online que facilitam o aprendizado, e o funcionamento de todas as 
+//! features.
 //! 
 
 /// Módulo que implementa as interfaces que integragem com o usuário

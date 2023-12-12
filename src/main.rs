@@ -75,6 +75,98 @@
 //! referência, basta colocar o parâmetro que será utilizado, o compilador automaticamente traduz a referência
 //! para o valor que deve ser usado.
 //! 
+//! Em termos mais gerais, não tem uma capacidade de escrita muito elevada. Como o principal foco de Rust é confiança e
+//! segurança, o compilador aplica muitas regras que o programador deve seguir, se não o programa não compila. Um bom
+//! exemplo disso é o borrow-checker, que deixa a passagem de parâmetros muito mais complicada em Rust.
+//! 
+//! Por outro lado, Rust possui um bom suporte para a abstração, com a adição de métodos a structs e enums sendo um bom
+//! exemplo disso. Uma outra forma que Rust aumenta o suporte para a abstração é a facilidade com que você pode segregar
+//! diferentes partes do código para que um arquivo só exporte as funções finais que ele implementa, não qualquer uma 
+//! intermediaria, que seja para uso apenas interno.
+//! 
+//! Em termos de expressividade e sintaxe Rust é bem similar a C, não deviando muito nem para pior ou para melhor.
+//! 
+//! ### Confiabilidade
+//! 
+//! Confiabilidade é a área em que Rust mais se destaca, como o foco inteiro da linguagem é seguraça, muito trabalho
+//! foi realizado para que a linguagem seja o mais confiável possivel.
+//! 
+//! Rust tem uma verificação de tipos estática, em tempo de compilação. Mas não só isso, Rust implementa com tipos
+//! algumas coisas que outras linguagens deixariam a parte, como exceções e mutabilidade. A forma como Rust lida com
+//! a checagem de Structs ou Enums que tenham os mesmos tipos internos, mas nomes diferentes é com a checagem de nomes,
+//! o que também aumenta a confiabilidade na linguagem.
+//! 
+//! Tratamento de exceções. Rust é muito bom no quesito tratamento de exceções, como dito anteriormente, rust lida com
+//! exceções, na maioria das vezes como um tipo, com funções que podem falhar retornando o seguinte Enum:
+//! ```
+//! enum Result<T, E> {
+//!     Ok(T),
+//!     Err(E),
+//! }
+//! ```
+//! Dessa forma, o Usuário é obrigado a lidar com o erro de alguma forma antes de poder usar o resultado da função. Não
+//! só isso, mas o Rust incentivo o tratamento de exceções e lidar com diferentes valores de uma variável com uma expressão
+//! `match`, que, embora inicialmente pareça similar a um `switch-case` força o programador a lidar com todos os valores possíveis
+//! para aquela variável, o que aumenta muito a confiabilidade.
+//! 
+//! Mais, o que é provavelmente a maior razão para a confiabilidade do Rust é o Borrow-checker. Esta é um estapa na compilação que
+//! enforça um conjunto de regras que tem como objetivo minimizar os problemas que o programados pode ter com efeitos colaterais e
+//! os valores dentro de uma função. O que o Borrow-checker enforça é que cada variável só pode ter um "dono", e, assim que este dono
+//! acaba de ser executado, a variável é liberada da memória (é assim que Rust consegue não fazer uso de um Garbage collector). Além disso,
+//! por padrão, apenas a função que é "dona" da variável pode modificar a variável. Nesse viés, para passarmos parâmetros em Rust, podemos
+//! fazer de 3 formas diferentes.
+//! 
+//! Passagem por referência:
+//! ```
+//! fn fun(a: &i32) -> i32 {
+//!     a + 10
+//! }
+//! 
+//! fn main () {
+//!     let a = 1;
+//!     let b = fun(&a);
+//!     println!("a : {}; b : {}", &a, &b);
+//! }
+//! ```
+//! Na passagem por referência, a função que recebe a variável apenas a consegue ler, não edita-la, o que evita efeitos colaterais.
+//! Uma variável pode ser referenciada várias vezes ao mesmo tempo.
+//! 
+//! Passagem por referência mutável:
+//! ```
+//! fn fun(a: &mut i32) {
+//!     a += 10;
+//! }
+//! 
+//! fn main () {
+//!     let a = 1;
+//!     fun(&mut a);
+//!     println!("a : {};", &a);
+//! }
+//! ```
+//! Na passagem por referência mutável, a função chamada pode modificar a variável passada, mas a função chamadora ainda é a dona
+//! da variável. Como isso pode causar efeito colateral, apenas um função pode acessar uma variável por referência mutável por
+//! vez, e não permite que a variável seja lida até que a função chamada resolva, para evitar efeitos colaterais negativos.
+//! 
+//! Passagem de propriedade:
+//! ```
+//! fn fun(a: i32) -> i32 {
+//!     a += 10;
+//! }
+//! 
+//! fn main () {
+//!     let a = 1;
+//!     let a = fun(a);
+//!     println!("a : {};", &a);
+//! }
+//! ```
+//! Quando um função é chamada por passagem de propriedade, a função chamada vira a dona do valor passado, dessa forma, a função
+//! chamadora perde acesso aquela variável e não consegue mais utilizar aquela variável.
+//! 
+//! Com essas 3 formas de passagem de parâmetros Rust deixa problemas com valores inesperados de variáveis algo basicamente impossível
+//! de acontecer.
+//! 
+//! ### Custo
+//! 
 
 /// Módulo que implementa as interfaces que integragem com o usuário
 pub mod interfaces;

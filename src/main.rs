@@ -214,8 +214,11 @@
 
 /// Módulo que implementa as interfaces que integragem com o usuário
 pub mod interfaces;
+/// Módulo que implementa o tipo básico utilizado pela maioria do projeto
 pub mod types;
+/// Módulo que lida da encriptação e decriptação dos dados gerados
 pub mod encryption;
+/// Módulo que implementa a persistência das senhas guardadas
 pub mod persistency;
 /// Módulo que cria uma senha aleatória para o usuário
 pub mod suggest_password;
@@ -223,6 +226,7 @@ pub mod suggest_password;
 use interfaces::cli;
 use types::Entry;
 
+/// Função geral do código, apenas chama a [função de login da interface cli](cli::login_menu)
 fn main() {
     let master_password = "Test Password";
     let mut data: Vec<Entry> = Vec::new();

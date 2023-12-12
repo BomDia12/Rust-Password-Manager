@@ -5,9 +5,9 @@ use serde::{Serialize, Deserialize};
 
 /// Implementação da estrutura de entrada, que terá:
 /// # Atributos
-/// * `username` - uma string que contém o nome de usuário da conta a ser guardada
-/// * `domain` - domínio do site ao qual a conta pertence
-/// * `password` - senha da conta guardada
+/// * `username` - uma string que representa o nome de usuário da conta a ser guardada
+/// * `domain` - uma string que representa o domínio do site ao qual a conta pertence
+/// * `password` - uma string que representa a senha da conta guardada
 pub struct Entry {
     pub username: String,
     pub domain: String,

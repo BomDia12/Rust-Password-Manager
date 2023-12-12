@@ -5,11 +5,11 @@
 //! como a Linguagem a ser usada no desenvolvimento dos projetos.
 //! 
 //! # Desenvolvedores
-//! - Ana Paula
+//! - Ana Paula Oliveira da Nobrega Costa (190142120)
 //! - Arthur Mota Furtado (200014935)
-//! - Gabriel Cruz
-//! - Nicolas
-//! - Vanessa Paixão
+//! - Gabriel Cruz Vaz Santos (200049038)
+//! - Nícolas Paulin Benatto ()
+//! - Vanessa Paixão Costa (200028286)
 //! 
 //! # Características da Linguagem Rust
 //! 

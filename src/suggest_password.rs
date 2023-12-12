@@ -42,7 +42,7 @@ impl IsPassValid {
 /// Cria um novo vetor com as propriedades de [ValidCharacters].
 /// Gera uma senha de 12 caracteres com caracteres aleatórios.
 /// Valida a senha, para que haja todos os tipos especificados em [ValidCharacters].
-/// Retorna a senha como um vetor de caracteres ([String]).
+/// Retorna a senha como uma [String].
 pub fn suggest_strong_password() -> String {
     
     let mut password: Vec<ValidCharacters> = Vec::new();

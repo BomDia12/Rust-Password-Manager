@@ -39,10 +39,10 @@ impl IsPassValid {
 }
 
 /// Função de sugestão de senha forte.
-/// Cria um novo vetor com as propriedades de [ValidCharacters](ValidCharacters).
+/// Cria um novo vetor com as propriedades de [ValidCharacters].
 /// Gera uma senha de 12 caracteres com caracteres aleatórios.
-/// Valida a senha, para que haja todos os tipos especificados em [ValidCharacters](ValidCharacters).
-/// Retorna a senha como um vetor de caracteres ([String](String)).
+/// Valida a senha, para que haja todos os tipos especificados em [ValidCharacters].
+/// Retorna a senha como um vetor de caracteres ([String]).
 pub fn suggest_strong_password() -> String {
     
     let mut password: Vec<ValidCharacters> = Vec::new();
@@ -62,10 +62,10 @@ pub fn suggest_strong_password() -> String {
 
 /// Função para validação de senha.
 /// Verifica se a senha tem todos os tipos de caracteres necessários.
-/// Retorna um vetor de [ValidCharacters](ValidCharacters).
+/// Retorna um vetor de [ValidCharacters].
 /// 
 /// # Parâmetros
-/// * `password` - variável mutável de um vetor de [ValidCharacters](ValidCharacters).
+/// * `password` - variável mutável de um vetor de [ValidCharacters].
 fn validate_password(mut password: Vec<ValidCharacters>) -> Vec<ValidCharacters> {
     loop {
         let is_password_valid = check_if_password_is_valid(&password);
@@ -94,7 +94,7 @@ fn validate_password(mut password: Vec<ValidCharacters>) -> Vec<ValidCharacters>
 /// Checa cada letra da senha para verificar se há os atributos necessários para a senha ser válida.
 /// 
 /// # Parâmetros
-/// * `password` - variável mutável de um vetor de [ValidCharacters](ValidCharacters).
+/// * `password` - variável mutável de um vetor de [ValidCharacters].
 fn check_if_password_is_valid(password: &Vec<ValidCharacters>) -> IsPassValid {
     let mut res = IsPassValid {
         has_lower_case_char: false,
@@ -115,10 +115,10 @@ fn check_if_password_is_valid(password: &Vec<ValidCharacters>) -> IsPassValid {
     res
 }
 
-/// Função para transformar a senha de um vetor de [ValidCharacters](ValidCharacters) para [String](String).
+/// Função para transformar a senha de um vetor de [ValidCharacters] para [String].
 /// 
 /// # Parâmetros
-/// * `password` - variável mutável de um vetor de [ValidCharacters](ValidCharacters).
+/// * `password` - variável mutável de um vetor de [ValidCharacters].
 fn unwrap_password(password: Vec<ValidCharacters>) -> String {
     let mut char_vec = Vec::new();
     for character in password {

@@ -6,11 +6,11 @@ use std::fs;
 
 /// Função que irá salvar nossos dados de domínio, usuário e senha codificados em um arquivo na memória.
 /// Primeiro, serializamos os dados para um json no formato de String.
-/// Então, utilizamos a função [encrypt_data](encrypt_data) para codificar os dados.
+/// Então, utilizamos a função [encrypt_data] para codificar os dados.
 /// E, por último, escrevemos esses dados codificados em um arquivo.
 /// 
 /// # Parâmetros
-/// * `data` - Uma variável para a referência de um vetor de dados do tipo [Entry](Entry) que conterá os dados a serem codificados e guardados na memória.
+/// * `data` - Uma variável para a referência de um vetor de dados do tipo [Entry] que conterá os dados a serem codificados e guardados na memória.
 pub fn save_data_to_disk(data: &Vec<Entry>) {
     let json = serde_json::to_string(&data).expect("Erro serializer");
     let encrypted_data = encrypt_data(json);
@@ -19,12 +19,12 @@ pub fn save_data_to_disk(data: &Vec<Entry>) {
 
 /// Função para leitura de arquivo codificado para decodificação e armazenamento em variável.
 /// Primeiro, lemos os dados do arquivo. Caso o arquivo não exista, não passamos para o próximo passo.
-/// Então, utilizamos a função [decrypt_data](decrypt_data) para decodificar os dados.
-/// Após isso, desserializamos os dados para voltar a ser um vetor de dados do tipo [Entry](Entry).
+/// Então, utilizamos a função [decrypt_data] para decodificar os dados.
+/// Após isso, desserializamos os dados para voltar a ser um vetor de dados do tipo [Entry].
 /// E, por último, armazenamos esses dados na variável `data`.
 /// 
 /// # Parâmetros
-/// * `data` - Uma variável para a referência de um vetor mutável de dados do tipo [Entry](Entry) que conterá os dados que forem decodificados na função.
+/// * `data` - Uma variável para a referência de um vetor mutável de dados do tipo [Entry] que conterá os dados que forem decodificados na função.
 pub fn read_data_from_disk(data: &mut Vec<Entry>) {
     let encrypted_data = match fs::read("data") {
         Ok(data) => data,

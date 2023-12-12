@@ -8,7 +8,7 @@
 //! - Ana Paula Oliveira da Nobrega Costa (190142120)
 //! - Arthur Mota Furtado (200014935)
 //! - Gabriel Cruz Vaz Santos (200049038)
-//! - Nícolas Paulin Benatto ()
+//! - Nícolas Paulin Benatto (200025627)
 //! - Vanessa Paixão Costa (200028286)
 //! 
 //! # Características da Linguagem Rust

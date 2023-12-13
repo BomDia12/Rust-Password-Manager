@@ -235,5 +235,5 @@ use interfaces::cli;
 
 /// Função geral do código, apenas chama a [função de login da interface cli](cli::login_menu)
 fn main() {
-    cli::login_menu();
+    cli::init();
 }

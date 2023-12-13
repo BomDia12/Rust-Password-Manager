@@ -1,6 +1,6 @@
 use openssl::{aes::{AesKey, aes_ige}, sha::Sha256, symm::Mode};
 
-pub fn encrypt_data(data: String, key: &AesKey) -> String {
+pub fn encrypt_data(data: String, key: &AesKey) -> Vec<u8> {
     let blocks = break_data(data.into_bytes());
     let mut res: Vec<u8> = Vec::new();
     let mut iv = *b"\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0A\x0B\x0C\x0D\x0E\x0F\
@@ -12,10 +12,10 @@ pub fn encrypt_data(data: String, key: &AesKey) -> String {
             res.push(byte);
         }
     }
-    String::from_utf8(res).unwrap()
+    res
 } 
 
-pub fn decrypt_data(data: Vec<u8>, key: &AesKey) -> String {
+pub fn decrypt_data(data: Vec<u8>, key: &AesKey) -> Result<String, ()> {
     let blocks = break_data(data);
     let mut res: Vec<u8> = Vec::new();
     let mut iv = *b"\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0A\x0B\x0C\x0D\x0E\x0F\
@@ -27,7 +27,10 @@ pub fn decrypt_data(data: Vec<u8>, key: &AesKey) -> String {
             res.push(byte);
         }
     }
-    String::from_utf8(res).unwrap()
+    match String::from_utf8(res) {
+        Ok(a) => Ok(a),
+        Err(_) => Err(())
+    }
 }
 
 fn break_data(data: Vec<u8>) -> Vec<[u8; 16]> {
@@ -57,5 +60,7 @@ pub fn generate_key(input_password: &str) -> AesKey {
     hash.update(input_password.as_bytes());
     let res = hash.finish();
     let res = &res[0..16];
+    dbg!(&res);
+    println!("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     AesKey::new_encrypt(&res).unwrap()
 }

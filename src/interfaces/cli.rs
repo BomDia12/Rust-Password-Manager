@@ -1,10 +1,32 @@
-use std::io::stdin;
-
+use std::{io::stdin, path::Path};
 use openssl::aes::AesKey;
-
 use crate::{types::Entry, persistency::{save_data_to_disk, read_data_from_disk}, suggest_password::suggest_strong_password, encryption::generate_key};
 
-pub fn login_menu() {
+pub fn init() {
+    if Path::new("data").exists() {
+        return login_menu();
+    }
+    create_password()
+}
+
+fn create_password() {
+    clear_terminal();
+    println!("Por favor crie a sua senha mestra!");
+    
+    let mut inserted_password = String::new();
+
+    stdin().read_line(&mut inserted_password).expect("Por favor insira um valor válido");
+
+    let inserted_password = inserted_password.trim();
+
+    let key = generate_key(inserted_password);
+
+    let data = Vec::new();
+
+    main_menu(data, key)
+}
+
+fn login_menu() {
     clear_terminal();
     println!("Por favor insira a sua senha mestra!");
     
@@ -23,7 +45,7 @@ pub fn login_menu() {
     login_menu();
 }
 
-pub fn main_menu(data: Vec<Entry>, key: AesKey) {
+fn main_menu(data: Vec<Entry>, key: AesKey) {
 
     clear_terminal();
 
@@ -104,7 +126,7 @@ pub fn new_password(data: Vec<Entry>, key: AesKey) {
     main_menu(data, key);
 }
 
-pub fn stored_passwords(data: Vec<Entry>, key: AesKey) {
+fn stored_passwords(data: Vec<Entry>, key: AesKey) {
     let mut data = data;
     clear_terminal();
     print_saved_passwords(&data);

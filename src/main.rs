@@ -5,7 +5,7 @@
 //! como a Linguagem a ser usada no desenvolvimento dos projetos.
 //! 
 //! # Desenvolvedores
-//! - Ana Paula Oliveira da Nobrega Costa (190142120)
+//! - Ana Paula Oliveira da Nóbrega Costa (190142120)
 //! - Arthur Mota Furtado (200014935)
 //! - Gabriel Cruz Vaz Santos (200049038)
 //! - Nícolas Paulin Benatto (200025627)

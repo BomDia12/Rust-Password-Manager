@@ -1,3 +1,5 @@
+use openssl::aes::AesKey;
+
 /// Importando o tipo `Entry` para entrada de dados e as funções de codificação e decodificação de criptografia.
 use crate::{types::Entry, encryption::{encrypt_data, decrypt_data}};
 
@@ -11,9 +13,9 @@ use std::fs;
 /// 
 /// # Parâmetros
 /// * `data` - Uma variável para a referência de um vetor de dados do tipo [Entry] que conterá os dados a serem codificados e guardados na memória.
-pub fn save_data_to_disk(data: &Vec<Entry>) {
+pub fn save_data_to_disk(data: &Vec<Entry>, key: &AesKey) {
     let json = serde_json::to_string(&data).expect("Erro serializer");
-    let encrypted_data = encrypt_data(json, "");
+    let encrypted_data = encrypt_data(json, key);
     fs::write("data", encrypted_data).expect("Erro escrevendo json");
 }
 
@@ -25,14 +27,19 @@ pub fn save_data_to_disk(data: &Vec<Entry>) {
 /// 
 /// # Parâmetros
 /// * `data` - Uma variável para a referência de um vetor mutável de dados do tipo [Entry] que conterá os dados que forem decodificados na função.
-pub fn read_data_from_disk(data: &mut Vec<Entry>) {
+pub fn read_data_from_disk(key: &AesKey) -> Result<Vec<Entry>, ()> {
     let encrypted_data = match fs::read("data") {
         Ok(data) => data,
-        Err(_) => return
+        Err(_) => return Err(())
     };
-    let decrypted_data = decrypt_data(encrypted_data, "");
-    let deserialized: Vec<Entry> = serde_json::from_str(&decrypted_data).expect("Erro deserialize");
+    let decrypted_data = decrypt_data(encrypted_data, key);
+    let deserialized: Vec<Entry> = match serde_json::from_str(&decrypted_data) {
+        Ok(data) => data,
+        Err(_) => return Err(())
+    };
+    let mut data = Vec::new();
     for i in deserialized {
-        data.push(i)
+        data.push(i);
     }
+    Ok(data)
 }

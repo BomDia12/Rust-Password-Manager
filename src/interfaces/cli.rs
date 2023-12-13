@@ -1,8 +1,10 @@
 use std::io::stdin;
 
-use crate::{types::Entry, persistency::{save_data_to_disk, read_data_from_disk}, suggest_password::suggest_strong_password};
+use openssl::aes::AesKey;
 
-pub fn login_menu(master_password: &str, data: &mut Vec<Entry>) {
+use crate::{types::Entry, persistency::{save_data_to_disk, read_data_from_disk}, suggest_password::suggest_strong_password, encryption::generate_key};
+
+pub fn login_menu() {
     clear_terminal();
     println!("Por favor insira a sua senha mestra!");
     
@@ -12,15 +14,16 @@ pub fn login_menu(master_password: &str, data: &mut Vec<Entry>) {
 
     let inserted_password = inserted_password.trim();
 
-    if inserted_password == master_password {
-        read_data_from_disk(data);
-        return main_menu(data);
-    }
+    let key = generate_key(inserted_password);
+    match read_data_from_disk(&key) {
+        Ok(data) => return main_menu(data, key),
+        Err(_) => ()
+    };
 
-    login_menu(master_password, data);
+    login_menu();
 }
 
-pub fn main_menu(data: &mut Vec<Entry>) {
+pub fn main_menu(data: Vec<Entry>, key: AesKey) {
 
     clear_terminal();
 
@@ -31,7 +34,7 @@ pub fn main_menu(data: &mut Vec<Entry>) {
         println!("1 - Navegue por suas senhas salvas");
         println!("2 - Salve uma nova senha no nosso sistema");
         println!("3 - Saia do nosso sistema");
-    
+
         let mut option = String::new();
     
         stdin().read_line(&mut option).expect("Por favor insira um valor válido");
@@ -46,8 +49,8 @@ pub fn main_menu(data: &mut Vec<Entry>) {
         };
 
         match option {
-            1 => return stored_passwords(data),
-            2 => return new_password(data),
+            1 => return stored_passwords(data, key),
+            2 => return new_password(data, key),
             3 => return,
             _ => {
                 clear_terminal();
@@ -58,7 +61,8 @@ pub fn main_menu(data: &mut Vec<Entry>) {
     }
 }
 
-pub fn new_password(data: &mut Vec<Entry>) {
+pub fn new_password(data: Vec<Entry>, key: AesKey) {
+    let mut data = data;
     let mut domain = String::new();
     let mut username = String::new();
     let mut password = String::new();
@@ -95,14 +99,15 @@ pub fn new_password(data: &mut Vec<Entry>) {
 
     data.push(new_entry);
     
-    save_data_to_disk(data);
+    save_data_to_disk(&data, &key);
 
-    main_menu(data);
+    main_menu(data, key);
 }
 
-pub fn stored_passwords(data: &mut Vec<Entry>) {
+pub fn stored_passwords(data: Vec<Entry>, key: AesKey) {
+    let mut data = data;
     clear_terminal();
-    print_saved_passwords(data);
+    print_saved_passwords(&data);
     loop {
         println!("Selecione uma das opções:");
         println!("1 - Listar senhas salvas novamente");
@@ -123,14 +128,14 @@ pub fn stored_passwords(data: &mut Vec<Entry>) {
 
         match option {
             1 => {
-                print_saved_passwords(data);
+                print_saved_passwords(&data);
                 continue;
             },
             2 => {
-                delete_password(data);
+                delete_password(&mut data, &key);
                 continue;
             },
-            3 => return main_menu(data),
+            3 => return main_menu(data, key),
             _ => {
                 clear_terminal();
                 println!("Favor inserir uma opção válida");
@@ -140,7 +145,7 @@ pub fn stored_passwords(data: &mut Vec<Entry>) {
     }
 }
 
-fn print_saved_passwords(data: &mut Vec<Entry>) {
+fn print_saved_passwords(data: &Vec<Entry>) {
     for (i, entry) in data.iter().enumerate() {
         println!("{i} - {}", entry.domain);
         println!("Usuário: {}", entry.username);
@@ -148,7 +153,7 @@ fn print_saved_passwords(data: &mut Vec<Entry>) {
     }
 }
 
-fn delete_password(data: &mut Vec<Entry>) {
+fn delete_password(data: &mut Vec<Entry>, key: &AesKey) {
     println!("Insira o índice da senha a ser deletada (-1) para cancelar a operação");
 
     loop {
@@ -179,7 +184,7 @@ fn delete_password(data: &mut Vec<Entry>) {
                     continue;
                 }
                 data.remove(index);
-                save_data_to_disk(data);
+                save_data_to_disk(&data, &key);
                 break;
             }
         }

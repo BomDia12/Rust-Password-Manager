@@ -211,11 +211,22 @@
 //! Rust tem uma documentação fenomenal, e muitos conteúdos online que facilitam o aprendizado, e o funcionamento de todas as 
 //! features.
 //! 
+//! # Funcionamento do Projeto
+//! 
+//! O projeto é divido em módulos que implementam cada parte do código. Os Módulos estão detalhados abaixo.
+//! 
+//! O código pode ser rodado a partir do arquivo em `./target/release/cli-password-manager`. É possível que o código não rode em
+//! algum outro sistema operacional, para o qual o projeto foi compilado. Caso isso seja verdade, o projeto pode ser compilado com
+//! o auxílio do cargo por meio do comando `cargo run`, esse comando compila e imediatamente roda o executável.
+//! 
 
 /// Módulo que implementa as interfaces que integragem com o usuário
 pub mod interfaces;
+/// Módulo que implementa o tipo básico utilizado pela maioria do projeto
 pub mod types;
+/// Módulo que lida da encriptação e decriptação dos dados gerados
 pub mod encryption;
+/// Módulo que implementa a persistência das senhas guardadas
 pub mod persistency;
 /// Módulo que cria uma senha aleatória para o usuário
 pub mod suggest_password;
@@ -223,6 +234,7 @@ pub mod suggest_password;
 use interfaces::cli;
 use types::Entry;
 
+/// Função geral do código, apenas chama a [função de login da interface cli](cli::login_menu)
 fn main() {
     let master_password = "Test Password";
     let mut data: Vec<Entry> = Vec::new();

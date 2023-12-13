@@ -1,29 +1,29 @@
 use std::io::stdin;
 
 
-// Módulos necessários para o projeto
+/// Módulos necessários para o projeto
 use crate::{
     types::Entry,
     persistency::{save_data_to_disk, read_data_from_disk},
     suggest_password::suggest_strong_password,
 };
 
-// Função que implementa o menu de login do CLI.
-//
-// Esta função solicita ao usuário a inserção da senha mestra e, se a senha fornecida
-// for a mesma de senha mestra fornecida como argumento, exibe o menu principal no terminal.
-//
-// # Argumentos
-//
-// * `master_password` - A senha mestra que o usuário deve fornecer para acessar o sistema.
-// * `data` - Um vetor mutável contendo as entradas do gerenciador de senhas.
-//
-// # Exemplo
-//
-// ```rust
-// let mut data = vec![]; // Inicializa o vetor de dados
-// login_menu("senha_mestra", &mut data);
-// ```
+/// Função que implementa o menu de login do CLI.
+///
+/// Esta função solicita ao usuário a inserção da senha mestra e, se a senha fornecida
+/// for a mesma de senha mestra fornecida como argumento, exibe o menu principal no terminal.
+///
+/// # Argumentos
+///
+/// * `master_password` - A senha mestra que o usuário deve fornecer para acessar o sistema.
+/// * `data` - Um vetor mutável contendo as entradas do gerenciador de senhas.
+///
+/// # Exemplo
+///
+/// ```rust
+/// let mut data = vec![]; // Inicializa o vetor de dados
+/// login_menu("senha_mestra", &mut data);
+/// ```
 pub fn login_menu(master_password: &str, data: &mut Vec<Entry>) {
     clear_terminal();
     println!("Por favor insira a sua senha mestra!");
@@ -43,22 +43,22 @@ pub fn login_menu(master_password: &str, data: &mut Vec<Entry>) {
 }
 
 
-// Função que implementa o menu principal do sistema de gerenciamento de senhas.
-//
-// Exibe um menu de opções para o usuário, permitindo a navegação por senhas salvas,
-// a adição de uma nova senha ou a saída do sistema.
-// O usuário é solicitado a inserir uma opção válida e ações correspondentes são realizadas.
-//
-// # Argumentos
-//
-// * `data` - Um vetor mutável contendo as entradas do gerenciador de senhas.
-//
-// # Exemplo
-//
-// ```rust
-// let mut data = vec![]; // Inicializa o vetor de dados
-// main_menu(&mut data);
-// ```
+/// Função que implementa o menu principal do sistema de gerenciamento de senhas.
+///
+/// Exibe um menu de opções para o usuário, permitindo a navegação por senhas salvas,
+/// a adição de uma nova senha ou a saída do sistema.
+/// O usuário é solicitado a inserir uma opção válida e ações correspondentes são realizadas.
+///
+/// # Argumentos
+///
+/// * `data` - Um vetor mutável contendo as entradas do gerenciador de senhas.
+///
+/// # Exemplo
+///
+/// ```rust
+/// let mut data = vec![]; // Inicializa o vetor de dados
+/// main_menu(&mut data);
+/// ```
 pub fn main_menu(data: &mut Vec<Entry>) {
 
     clear_terminal(); // Função para limpar o terminal
@@ -110,22 +110,22 @@ pub fn main_menu(data: &mut Vec<Entry>) {
     }
 }
 
-// Função para adicionar uma nova senha ao sistema.
-//
-// Solicita ao usuário as informações necessárias para criar uma nova entrada
-// (domínio, nome de usuário e senha) e a adiciona ao vetor de dados fornecido.
-// Caso o usuário opte por gerar uma senha forte, uma sugestão de senha forte é gerada.
-//
-// # Argumentos
-//
-// * `data` - Um vetor mutável contendo as entradas do gerenciador de senhas.
-//
-// # Exemplo
-//
-// ```rust
-// let mut data = vec![]; // Inicializa o vetor de dados
-// new_password(&mut data);
-// ```
+/// Função para adicionar uma nova senha ao sistema.
+///
+/// Solicita ao usuário as informações necessárias para criar uma nova entrada
+/// (domínio, nome de usuário e senha) e a adiciona ao vetor de dados fornecido.
+/// Caso o usuário opte por gerar uma senha forte, uma sugestão de senha forte é gerada.
+///
+/// # Argumentos
+///
+/// * `data` - Um vetor mutável contendo as entradas do gerenciador de senhas.
+///
+/// # Exemplo
+///
+/// ```rust
+/// let mut data = vec![]; // Inicializa o vetor de dados
+/// new_password(&mut data);
+/// ```
 pub fn new_password(data: &mut Vec<Entry>) {
 
     // Inicializa variáveis para armazenar o domínio, nome de usuário e senha
@@ -253,21 +253,21 @@ pub fn stored_passwords(data: &mut Vec<Entry>) {
 }
 
 
-// Função para imprimir as senhas salvas no sistema.
-//
-// Exibe as informações de cada entrada (domínio, usuário e senha) armazenada
-// no vetor de dados fornecido.
-//
-// # Argumentos
-//
-// * `data` - Um vetor mutável contendo as entradas do gerenciador de senhas.
-//
-// # Exemplo
-//
-// ```rust
-// let mut data = vec![]; // Inicializa o vetor de dados
-// print_saved_passwords(&mut data);
-// ```
+/// Função para imprimir as senhas salvas no sistema.
+///
+/// Exibe as informações de cada entrada (domínio, usuário e senha) armazenada
+/// no vetor de dados fornecido.
+///
+/// # Argumentos
+///
+/// * `data` - Um vetor mutável contendo as entradas do gerenciador de senhas.
+///
+/// # Exemplo
+///
+/// ```rust
+/// let mut data = vec![]; // Inicializa o vetor de dados
+/// print_saved_passwords(&mut data);
+/// ```
 fn print_saved_passwords(data: &mut Vec<Entry>) {
     for (i, entry) in data.iter().enumerate() {
 
@@ -282,21 +282,21 @@ fn print_saved_passwords(data: &mut Vec<Entry>) {
     }
 }
 
-// Função para deletar uma senha do sistema com base no índice fornecido pelo usuário.
-//
-// Solicita ao usuário o índice da senha a ser deletada e realiza a remoção da entrada
-// correspondente do vetor de dados. As alterações são então salvas no disco.
-//
-// # Argumentos
-//
-// * `data` - Um vetor mutável contendo as entradas do gerenciador de senhas.
-//
-// # Exemplo
-//
-// ```rust
-// let mut data = vec![]; // Inicializa o vetor de dados
-// delete_password(&mut data);
-// ```
+/// Função para deletar uma senha do sistema com base no índice fornecido pelo usuário.
+///
+/// Solicita ao usuário o índice da senha a ser deletada e realiza a remoção da entrada
+/// correspondente do vetor de dados. As alterações são então salvas no disco.
+///
+/// # Argumentos
+///
+/// * `data` - Um vetor mutável contendo as entradas do gerenciador de senhas.
+///
+/// # Exemplo
+///
+/// ```rust
+/// let mut data = vec![]; // Inicializa o vetor de dados
+/// delete_password(&mut data);
+/// ```
 fn delete_password(data: &mut Vec<Entry>) {
 
     // Solicita ao usuário o índice da senha a ser deletada
@@ -359,7 +359,7 @@ fn delete_password(data: &mut Vec<Entry>) {
     clear_terminal();
 }
 
-// Função para limpar o terminal.
+/// Função para limpar o terminal.
 #[inline(always)] // Atributo para indicar que a função deve ser sempre inline
 fn clear_terminal() {
     print!("\x1B[2J\x1B[1;1H");

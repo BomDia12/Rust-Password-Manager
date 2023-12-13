@@ -37,7 +37,8 @@ fn login_menu() {
     let inserted_password = inserted_password.trim();
 
     let key = generate_key(inserted_password);
-    match read_data_from_disk(&key) {
+    let decrypt_key = AesKey::new_decrypt(&key).unwrap();
+    match read_data_from_disk(&decrypt_key) {
         Ok(data) => return main_menu(data, key),
         Err(_) => ()
     };
@@ -45,7 +46,7 @@ fn login_menu() {
     login_menu();
 }
 
-fn main_menu(data: Vec<Entry>, key: AesKey) {
+fn main_menu(data: Vec<Entry>, key: [u8; 32]) {
 
     clear_terminal();
 
@@ -83,7 +84,7 @@ fn main_menu(data: Vec<Entry>, key: AesKey) {
     }
 }
 
-pub fn new_password(data: Vec<Entry>, key: AesKey) {
+pub fn new_password(data: Vec<Entry>, key: [u8; 32]) {
     let mut data = data;
     let mut domain = String::new();
     let mut username = String::new();
@@ -121,12 +122,13 @@ pub fn new_password(data: Vec<Entry>, key: AesKey) {
 
     data.push(new_entry);
     
-    save_data_to_disk(&data, &key);
+    let encrypt_key = AesKey::new_encrypt(&key).unwrap();
+    save_data_to_disk(&data, &encrypt_key);
 
     main_menu(data, key);
 }
 
-fn stored_passwords(data: Vec<Entry>, key: AesKey) {
+fn stored_passwords(data: Vec<Entry>, key: [u8; 32]) {
     let mut data = data;
     clear_terminal();
     print_saved_passwords(&data);
@@ -175,7 +177,7 @@ fn print_saved_passwords(data: &Vec<Entry>) {
     }
 }
 
-fn delete_password(data: &mut Vec<Entry>, key: &AesKey) {
+fn delete_password(data: &mut Vec<Entry>, key: &[u8]) {
     println!("Insira o índice da senha a ser deletada (-1) para cancelar a operação");
 
     loop {
@@ -206,7 +208,8 @@ fn delete_password(data: &mut Vec<Entry>, key: &AesKey) {
                     continue;
                 }
                 data.remove(index);
-                save_data_to_disk(&data, &key);
+                let encrypt_key = AesKey::new_encrypt(key).unwrap();
+                save_data_to_disk(&data, &encrypt_key);
                 break;
             }
         }

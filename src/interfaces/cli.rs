@@ -1,14 +1,7 @@
-use std::{io::stdin, path::Path};
-use openssl::aes::AesKey;
+use std::io::stdin;
 use crate::{types::Entry, persistency::{save_data_to_disk, read_data_from_disk}, suggest_password::suggest_strong_password, encryption::generate_key};
 
 
-/// Módulos necessários para o projeto
-use crate::{
-    types::Entry,
-    persistency::{save_data_to_disk, read_data_from_disk},
-    suggest_password::suggest_strong_password,
-};
 
 /// Função que implementa o menu de login do CLI.
 ///

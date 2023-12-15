@@ -1,25 +1,25 @@
 use openssl::sha::Sha256;
 use openssl::symm::{encrypt, Cipher, decrypt};
 
-pub fn encrypt_data(data: &[u8], key: &[u8]) -> Vec<u8> {
+pub fn encrypt_data(data: &[u8], key: &[u8]) -> Result<Vec<u8>, _> {
     let cipher = Cipher::aes_256_cbc();
     let iv = b"\x00\x01\x02\x03\x04\x05\x06\x07\x00\x01\x02\x03\x04\x05\x06\x07\x00\x01\x02\x03\x04\x05\x06\x07\x00\x01\x02\x03\x04\x05\x06\x07";
     let ciphertext = encrypt(
         cipher,
         key,
         Some(iv),
-        data).unwrap();
+        data);
     ciphertext
 }
 
-pub fn decrypt_data(data: &[u8], key: &[u8]) -> Vec<u8> {
+pub fn decrypt_data(data: &[u8], key: &[u8]) -> Result<Vec<u8>, _> {
     let cipher = Cipher::aes_256_cbc();
     let iv = b"\x00\x01\x02\x03\x04\x05\x06\x07\x00\x01\x02\x03\x04\x05\x06\x07\x00\x01\x02\x03\x04\x05\x06\x07\x00\x01\x02\x03\x04\x05\x06\x07";
     let message = decrypt(
         cipher,
         key,
         Some(iv),
-        data).unwrap();
+        data);
     message 
 }
 

@@ -26,7 +26,7 @@ use crate::{
 /// let mut data = vec![]; // Inicializa o vetor de dados
 /// login_menu("senha_mestra", &mut data);
 /// ```
-pub fn login_menu(master_password: &str, data: &mut Vec<Entry>) {
+pub fn login_menu() {
     clear_terminal();
     println!("Por favor insira a sua senha mestra!");
     
@@ -37,8 +37,7 @@ pub fn login_menu(master_password: &str, data: &mut Vec<Entry>) {
     let inserted_password = inserted_password.trim();
 
     let key = generate_key(inserted_password);
-    let decrypt_key = AesKey::new_decrypt(&key).unwrap();
-    match read_data_from_disk(&decrypt_key) {
+    match read_data_from_disk(&key) {
         Ok(data) => return main_menu(data, key),
         Err(_) => ()
     };
@@ -63,7 +62,7 @@ pub fn login_menu(master_password: &str, data: &mut Vec<Entry>) {
 /// let mut data = vec![]; // Inicializa o vetor de dados
 /// main_menu(&mut data);
 /// ```
-pub fn main_menu(data: &mut Vec<Entry>) {
+pub fn main_menu(data: Vec<Entry>, key: [u8; 32]) {
 
     clear_terminal(); // Função para limpar o terminal
 
@@ -99,9 +98,9 @@ pub fn main_menu(data: &mut Vec<Entry>) {
         // Utiliza uma expressão match para determinar a ação com base na opção escolhida pelo usuário.
         match option {
             // Se a opção for 1, chama a função para visualizar senhas armazenadas
-            1 => return stored_passwords(data),
+            1 => return stored_passwords(data, key),
             // Se a opção for 2, chama a função para salvar uma nova senha
-            2 => return new_password(data),
+            2 => return new_password(data, key),
             // Se a opção for 3, sai do programa
             3 => return,
             // Se a opção não for nenhuma das anteriores, limpa o terminal, exibe uma mensagem de erro
@@ -130,7 +129,8 @@ pub fn main_menu(data: &mut Vec<Entry>) {
 /// let mut data = vec![]; // Inicializa o vetor de dados
 /// new_password(&mut data);
 /// ```
-pub fn new_password(data: &mut Vec<Entry>) {
+pub fn new_password(data: Vec<Entry>, key: [u8; 32]) {
+    let mut data = data;
 
     // Inicializa variáveis para armazenar o domínio, nome de usuário e senha
     let mut domain = String::new();
@@ -176,10 +176,10 @@ pub fn new_password(data: &mut Vec<Entry>) {
     data.push(new_entry);
     
     // Salva os dados 
-    save_data_to_disk(data);
+    save_data_to_disk(&data, &key);
 
     // Retorna ao menu principal
-    main_menu(data);
+    main_menu(data, key);
 }
 
 
@@ -198,12 +198,14 @@ pub fn new_password(data: &mut Vec<Entry>) {
 /// let mut data = vec![]; // Inicializa o vetor de dados
 /// stored_passwords(&mut data);
 /// ```
-pub fn stored_passwords(data: &mut Vec<Entry>) {
+pub fn stored_passwords(data: Vec<Entry>, key: [u8; 32]) {
+
+    let mut data = data;
 
     // Limpa o terminal antes de exibir o menu
     clear_terminal();
     // Exibe as senhas salvas
-    print_saved_passwords(data);
+    print_saved_passwords(&data);
 
     // Loop principal do menu de senhas salvas
     loop {
@@ -244,7 +246,7 @@ pub fn stored_passwords(data: &mut Vec<Entry>) {
             },
 
             // Se a opção for 3, retorna ao menu principal
-            3 => return main_menu(data),
+            3 => return main_menu(data, key),
 
             // Se a opção não for nenhuma das anteriores, limpa o terminal, exibe uma mensagem de erro
             _ => {
@@ -272,7 +274,7 @@ pub fn stored_passwords(data: &mut Vec<Entry>) {
 /// let mut data = vec![]; // Inicializa o vetor de dados
 /// print_saved_passwords(&mut data);
 /// ```
-fn print_saved_passwords(data: &mut Vec<Entry>) {
+fn print_saved_passwords(data: &Vec<Entry>) {
     for (i, entry) in data.iter().enumerate() {
 
         // Imprime o índice da senha
@@ -301,7 +303,7 @@ fn print_saved_passwords(data: &mut Vec<Entry>) {
 /// let mut data = vec![]; // Inicializa o vetor de dados
 /// delete_password(&mut data);
 /// ```
-fn delete_password(data: &mut Vec<Entry>) {
+fn delete_password(data: &mut Vec<Entry>, key: &[u8]) {
 
     // Solicita ao usuário o índice da senha a ser deletada
     println!("Insira o índice da senha a ser deletada (-1) para cancelar a operação");
@@ -353,7 +355,7 @@ fn delete_password(data: &mut Vec<Entry>) {
                 data.remove(index);
 
                 // Salva os dados
-                save_data_to_disk(data);
+                save_data_to_disk(&data, &key);
                 break;
             }
         }

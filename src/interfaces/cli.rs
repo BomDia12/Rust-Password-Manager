@@ -19,7 +19,7 @@ pub fn init() {
 
     let data = Vec::new();
 
-    let key = generate_key(input_password);
+    let key = generate_key(inserted_password);
 
     main_menu(data, key)
 }

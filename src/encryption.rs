@@ -1,9 +1,31 @@
-pub fn encrypt_data(data: String) -> String {
-    data
+use openssl::sha::Sha256;
+use openssl::symm::{encrypt, Cipher, decrypt};
+
+pub fn encrypt_data(data: &[u8], key: &[u8]) -> Vec<u8> {
+    let cipher = Cipher::aes_256_cbc();
+    let iv = b"\x00\x01\x02\x03\x04\x05\x06\x07\x00\x01\x02\x03\x04\x05\x06\x07\x00\x01\x02\x03\x04\x05\x06\x07\x00\x01\x02\x03\x04\x05\x06\x07";
+    let ciphertext = encrypt(
+        cipher,
+        key,
+        Some(iv),
+        data).unwrap();
+    ciphertext
 }
 
-pub fn decrypt_data(data: Vec<u8>) -> String {
-    String::from_utf8(data).expect("não converteu")
+pub fn decrypt_data(data: &[u8], key: &[u8]) -> Vec<u8> {
+    let cipher = Cipher::aes_256_cbc();
+    let iv = b"\x00\x01\x02\x03\x04\x05\x06\x07\x00\x01\x02\x03\x04\x05\x06\x07\x00\x01\x02\x03\x04\x05\x06\x07\x00\x01\x02\x03\x04\x05\x06\x07";
+    let message = decrypt(
+        cipher,
+        key,
+        Some(iv),
+        data).unwrap();
+    message 
 }
 
-pub fn generate_encryption_key() {}
+pub fn generate_key(input_password: &str) -> [u8; 32] {
+    let mut hash = Sha256::new();
+    hash.update(input_password.as_bytes());
+    let res = hash.finish();
+    res
+}

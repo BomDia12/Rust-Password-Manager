@@ -1,7 +1,28 @@
-use std::io::stdin;
+use std::{io::stdin, path::Path};
 use crate::{types::Entry, persistency::{save_data_to_disk, read_data_from_disk}, suggest_password::suggest_strong_password, encryption::generate_key};
 
+pub fn init() {
+    let data = Path::new("data").exists();
 
+    if (data) {
+        login_menu();
+    } else {
+        clear_terminal();
+        println!("Por favor insira sua nova senha");
+    }
+
+    let mut inserted_password = String::new();
+
+    stdin().read_line(&mut inserted_password).expect("Por favor insira um valor válido");
+
+    let inserted_password = inserted_password.trim();
+
+    let data = Vec::new();
+
+    let key = generate_key(input_password);
+
+    main_menu(data, key)
+}
 
 /// Função que implementa o menu de login do CLI.
 ///
@@ -19,7 +40,7 @@ use crate::{types::Entry, persistency::{save_data_to_disk, read_data_from_disk},
 /// let mut data = vec![]; // Inicializa o vetor de dados
 /// login_menu("senha_mestra", &mut data);
 /// ```
-pub fn login_menu() {
+fn login_menu() {
     clear_terminal();
     println!("Por favor insira a sua senha mestra!");
     
@@ -55,7 +76,7 @@ pub fn login_menu() {
 /// let mut data = vec![]; // Inicializa o vetor de dados
 /// main_menu(&mut data);
 /// ```
-pub fn main_menu(data: Vec<Entry>, key: [u8; 32]) {
+fn main_menu(data: Vec<Entry>, key: [u8; 32]) {
 
     clear_terminal(); // Função para limpar o terminal
 
@@ -122,7 +143,7 @@ pub fn main_menu(data: Vec<Entry>, key: [u8; 32]) {
 /// let mut data = vec![]; // Inicializa o vetor de dados
 /// new_password(&mut data);
 /// ```
-pub fn new_password(data: Vec<Entry>, key: [u8; 32]) {
+fn new_password(data: Vec<Entry>, key: [u8; 32]) {
     let mut data = data;
 
     // Inicializa variáveis para armazenar o domínio, nome de usuário e senha
@@ -191,7 +212,7 @@ pub fn new_password(data: Vec<Entry>, key: [u8; 32]) {
 /// let mut data = vec![]; // Inicializa o vetor de dados
 /// stored_passwords(&mut data);
 /// ```
-pub fn stored_passwords(data: Vec<Entry>, key: [u8; 32]) {
+fn stored_passwords(data: Vec<Entry>, key: [u8; 32]) {
 
     let mut data = data;
 

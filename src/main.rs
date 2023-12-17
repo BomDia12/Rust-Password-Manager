@@ -232,12 +232,8 @@ pub mod persistency;
 pub mod suggest_password;
 
 use interfaces::cli;
-use types::Entry;
 
 /// Função geral do código, apenas chama a [função de login da interface cli](cli::login_menu)
 fn main() {
-    let master_password = "Test Password";
-    let mut data: Vec<Entry> = Vec::new();
-
-    cli::login_menu(&master_password, &mut data);
+    cli::init();
 }

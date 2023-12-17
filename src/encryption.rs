@@ -56,8 +56,8 @@ use openssl::symm::{encrypt, Cipher, decrypt};
 
 /// # Função de encriptar 
 /// ## Parâmetros
-/// data: toda a mensagem que deseja-se cifrar, já no formato de bytes
-/// key: chave de 256 bits que será usada 
+/// * `data`: toda a mensagem que deseja-se cifrar, já no formato de bytes
+/// * `key`: chave de 256 bits que será usada 
 /// ## Implementação
 /// Chama o construtor cipher da biblioteca openssl para termos uma instância da
 /// cifra de Rinjdael de 256 bits
@@ -79,8 +79,8 @@ pub fn encrypt_data(data: &[u8], key: &[u8]) -> Result<Vec<u8>, ErrorStack> {
 
 /// # Função de decifrar 
 /// ## Parâmetros
-/// data: todo o ciphertext que deseja-se decifrar, já no formato de bytes
-/// key: chave de 256 bits, deve ser a mesma para decifrar a mensagem.
+/// * `data`: todo o ciphertext que deseja-se decifrar, já no formato de bytes
+/// * `key`: chave de 256 bits, deve ser a mesma para decifrar a mensagem.
 /// ## Implementação
 /// Chama o construtor cipher da biblioteca openssl para termos uma instância da
 /// cifra de Rinjdael de 256 bits
@@ -102,7 +102,7 @@ pub fn decrypt_data(data: &[u8], key: &[u8]) -> Result<Vec<u8>, ErrorStack> {
 
 /// # Função para gerar hash de 256 bits 
 /// ## Parâmetros
-/// input_password: string sob a qual será aplicada a função de hasj
+/// * `input_password`: string sob a qual será aplicada a função de hash
 /// ## Implementação
 /// Chama o construtor Sha256 da biblioteca openssl para termos uma instância da
 /// classe Sha256;

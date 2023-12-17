@@ -32,7 +32,7 @@
 //! da variável, sempre que possível é inferido do contexto, por exemplo:
 //! ```
 //! let a = 5
-//! let b: int = 5
+//! let b: i32 = 5
 //! ```
 //! Dessa forma, o Rust diminui a quantidade de boilerplate, enquanto mantém a tipagem estática.
 //! 

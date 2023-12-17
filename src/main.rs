@@ -26,6 +26,37 @@
 //! Um outro foco que Rust teve, em seu desenvolvimento, é a criação de arquivos compilados pequenos, o que permite que
 //! seja uma linguagem com grande aplicabilidade no setor de embarcados.
 //! 
+//! ## Construtores
+//! 
+//! Em geral os contrutores de Rust são bem similar aos de C com alguns diferenças marcantes, primeiro, em Rust, o tipo
+//! da variável, sempre que possível é inferido do contexto, por exemplo:
+//! ```
+//! let a = 5
+//! let b: int = 5
+//! ```
+//! Dessa forma, o Rust diminui a quantidade de boilerplate, enquanto mantém a tipagem estática.
+//! 
+//! Para declaramos funções utilizamos a seguinte sintaxe
+//! ```
+//! fn main(arg1: type1) -> return_type {
+//! }
+//! ```
+//! Com os tipos dos argumentos e o tipo de retorno (a não ser que a função não tenho um retorno, nesse caso, a parte do tipo de
+//! retorno pode ficar vazia). Para retornar o que está dentro da função podemos colocar a palavra-chave `return`, ou, se estamos
+//! no final da função, apenas colocar o valor a ser retornado sem `;` depois:
+//! ```
+//! fn vezes_2(x: i32) -> i32 {
+//!     x * 2
+//! }
+//! ```
+//! ou
+//! ```
+//! fn vezes_2(x: i32) -> i32 {
+//!     return x * 2;
+//! }
+//! ```
+//! Structs e Enums são declaradas de formas similares a em C. 
+//! 
 //! ## Avaliaçao da linguagem em relação aos critérios de avaliação
 //! 
 //! ### Legibilidade
@@ -36,6 +67,21 @@
 //! Um exmplo claro disso, é a forma como Rust implementa mutabilidade. Por padrão, as variáveis em Rust são constantes
 //! e tem que ter um tipo a mais (`mut`) para serem mutáveis. Dessa forma, o programador, ao ler o código, entende
 //! exatamente quais variáveis serão mudadas ao longo do desenvolvimento e quais não serão.
+//! 
+//! Código C
+//! ```
+//! int multiplica_por_x(int valor) {
+//!     int x = 10;
+//!     return x * valor;
+//! }
+//! ```
+//! Código Rust
+//! ```
+//! fn multiplica_por_x(valor: i32) -> i32 {
+//!     let x = 10;
+//!     x * valor
+//! }
+//! ```
 //! 
 //! Rust tem muitas ferramentas que facilitam a leitura de código, uma das principais é o seu robusto sistema de tipagem.
 //! Em Rust, todos os tipos básicos são bem intuitivos, com os inteiros (`u8`, `i8`, `u16`, ...), por exemplo,
@@ -48,7 +94,23 @@
 //! Por meio da keyword `impl` é possível implementar métodos para essas Structs, tanto métodos gerais, que não necessitam de
 //! uma instância da Struct, quanto métodos específicos, que utlizam ou modificam o objeto que chamou a função. Além
 //! disso, quando uma Struct é declarada em um módulo, ela pode especificar quais propriedades da Struct são públicas
-//! e quais são privadas.
+//! e quais são privadas. O único ponto em que Structs se diferenciam de Classes, é a falta de Heranças.
+//! 
+//! ```
+//! Struct Pessoa {
+//!     primeiro_nome: String,
+//!     sobrenome: String,
+//!     cpf: String,
+//! }
+//! 
+//! impl Pessoa {
+//!     fn nome_completo(&self) -> String {
+//!         let mut res = self.primeio_nome.clone;
+//!         res.push_str(&self.sobrenome);
+//!         res
+//!     }
+//! }
+//! ```
 //! 
 //! Em relação a Enums, Rust os suporta como uma das principais estruturas de dados da linguagem. Tendo isso em vista,
 //! Rust permite que cada valor enumerado receba uma variável de um tipo diferente, o que facilita muito lidar com,
@@ -61,11 +123,16 @@
 //! }
 //! ```
 //! 
-//! Além disso, Rust também permite a implementação de métodos novos para Enums, assim como para Structs.
-//! 
 //! Por ultimo, mas não menos importante, devido a implentação de mutabilidade como um tipo em Rust, a assinatura das
 //! funções informa muito mais o usuário, uma vez que explicita se a função modifica, ou não um parâmetro, o que evita
 //! erros de efeitos colaterais quando usando um biblioteca externa.
+//! 
+//! ```
+//! fn double_1 (list: &mut Vec<u8>);
+//! fn double_2 (list: &Vec<u8>) -> Vec<u8>;
+//! ``` 
+//! Como podemos ver, apenas pela assinatura podemos saber que a primeira função modifica o Vetor, enquanto a segunda
+//! retorna um novo vetor baseado nas informações do vetor passado.
 //! 
 //! ### Capacidade de Escrita
 //! 
@@ -75,14 +142,40 @@
 //! referência, basta colocar o parâmetro que será utilizado, o compilador automaticamente traduz a referência
 //! para o valor que deve ser usado.
 //! 
-//! Em termos mais gerais, não tem uma capacidade de escrita muito elevada. Como o principal foco de Rust é confiança e
-//! segurança, o compilador aplica muitas regras que o programador deve seguir, se não o programa não compila. Um bom
-//! exemplo disso é o borrow-checker, que deixa a passagem de parâmetros muito mais complicada em Rust.
+//! Em C:
+//! ```
+//! int cinco = 5;
+//! int * ptr = &cinco;
+//! return 10 * *(ptr);
+//! ```
+//! 
+//! Em Rust:
+//! ```
+//! let cinco = 5;
+//! let ptr = &cinco;
+//! return 10 * ptr;
+//! ```
 //! 
 //! Por outro lado, Rust possui um bom suporte para a abstração, com a adição de métodos a structs e enums sendo um bom
 //! exemplo disso. Uma outra forma que Rust aumenta o suporte para a abstração é a facilidade com que você pode segregar
 //! diferentes partes do código para que um arquivo só exporte as funções finais que ele implementa, não qualquer uma 
 //! intermediaria, que seja para uso apenas interno.
+//! 
+//! ```
+//! Struct Pessoa {
+//!     primeiro_nome: String,
+//!     sobrenome: String,
+//!     cpf: String,
+//! }
+//! 
+//! impl Pessoa {
+//!     fn nome_completo(&self) -> String {
+//!         let mut res = self.primeio_nome.clone;
+//!         res.push_str(&self.sobrenome);
+//!         res
+//!     }
+//! }
+//! ```
 //! 
 //! Em termos de expressividade e sintaxe, Rust é bem similar a C.
 //! 
@@ -100,8 +193,12 @@
 //! a checagem de Structs ou Enums que tenham os mesmos tipos internos, mas nomes diferentes é com a checagem de nomes,
 //! o que também aumenta a confiabilidade na linguagem.
 //! 
-//! Tratamento de exceções. Rust é muito bom no quesito tratamento de exceções. Como dito anteriormente, Rust lida com
-//! exceções, na maioria das vezes como um tipo, com funções que podem falhar retornando o seguinte Enum:
+//! exemplo: Função de ler arquivos
+//! ```
+//! pub fn read<P: AsRef<Path>>(path: P) -> io::Result<Vec<u8>> 
+//! ```
+//! Temos que tratar de alguma forma com o possível erro antes de podermos acessar o valor lido. Isso é implementado usando o enum
+//! Result, visto abaixo.
 //! ```
 //! enum Result<T, E> {
 //!     Ok(T),
@@ -112,6 +209,13 @@
 //! só isso, mas o Rust incentiva o tratamento de exceções e a lidar com diferentes valores de uma variável com uma expressão
 //! `match`, que, embora inicialmente pareça similar a um `switch-case`, força o programador a lidar com todos os valores possíveis
 //! para aquela variável, o que aumenta muito a confiabilidade.
+//! 
+//! ```
+//! let encrypted_data = match fs::read("data") {
+//!     Ok(data) => data,
+//!     Err(_) => return Err(())
+//! };
+//! ```
 //! 
 //! Mas, o que é provavelmente a maior razão para a confiabilidade do Rust é o Borrow-checker. Esta é um etapa na compilação que
 //! impõe um conjunto de regras que tem como objetivo minimizar os problemas que o programador pode ter com efeitos colaterais e
@@ -233,7 +337,7 @@ pub mod suggest_password;
 
 use interfaces::cli;
 
-/// Função geral do código, apenas chama a [função de login da interface cli](cli::login_menu)
+/// Função geral do código, apenas chama a [função de iniciar a interface cli](cli::init)
 fn main() {
     cli::init();
 }

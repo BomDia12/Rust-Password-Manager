@@ -4,7 +4,7 @@ use crate::{types::Entry, persistency::{save_data_to_disk, read_data_from_disk},
 pub fn init() {
     let data = Path::new("data").exists();
 
-    if (data) {
+    if data {
         login_menu();
     } else {
         clear_terminal();

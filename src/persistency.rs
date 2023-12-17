@@ -33,7 +33,10 @@ pub fn read_data_from_disk(key: &[u8]) -> Result<Vec<Entry>, ()> {
         Err(_) => return Err(())
     };
     let decrypted_data = decrypt_data(&encrypted_data, key);
-    let decrypted_data = decrypted_data.unwrap();
+    let decrypted_data = match decrypted_data {
+        Ok(a) => a,
+        Err(_) => return Err(())
+    };
     let deserialized: Vec<Entry> = match serde_json::from_slice(&decrypted_data) {
         Ok(data) => data,
         Err(_) => return Err(())

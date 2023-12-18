@@ -1,62 +1,105 @@
 use std::{io::stdin, path::Path};
 use crate::{types::Entry, persistency::{save_data_to_disk, read_data_from_disk}, suggest_password::suggest_strong_password, encryption::generate_key};
 
-pub fn init() {
-    let data = Path::new("data").exists();
-
-    if data {
-        login_menu();
-    } else {
-        clear_terminal();
-        println!("Por favor insira sua nova senha");
-    }
-
-    let mut inserted_password = String::new();
-
-    stdin().read_line(&mut inserted_password).expect("Por favor insira um valor válido");
-
-    let inserted_password = inserted_password.trim();
-
-    let data = Vec::new();
-
-    let key = generate_key(inserted_password);
-
-    main_menu(data, key)
-}
-
-/// Função que implementa o menu de login do CLI.
+ ///
+/// Inicialização do Gerenciador de Senhas
 ///
-/// Esta função solicita ao usuário a inserção da senha mestra e, se a senha fornecida
-/// for a mesma de senha mestra fornecida como argumento, exibe o menu principal no terminal.
+/// Este módulo fornece o procedimento de inicialização para um gerenciador de senhas simples.
+/// O programa verifica a existência de um diretório "data". Se o diretório existir, o usuário é
+/// direcionado para o menu de login; caso contrário, é solicitado que configure uma nova senha.
+/// A senha inserida pelo usuário é usada para gerar uma chave de criptografia, e o menu principal
+/// é exibido.
 ///
-/// # Argumentos
-///
-/// * `master_password` - A senha mestra que o usuário deve fornecer para acessar o sistema.
-/// * `data` - Um vetor mutável contendo as entradas do gerenciador de senhas.
+/// Processo de Criptografia:
+/// - A senha do usuário é lida da entrada padrão.
+/// - Espaços em branco no início e no final da senha são removidos.
+/// - Um vetor vazio é criado para armazenar as entradas de senha.
+/// - Uma chave de criptografia é gerada com base na senha do usuário usando a função `generate_key`.
+/// - O menu principal é exibido com os dados inicializados e a chave de criptografia.
 ///
 /// # Exemplo
 ///
-/// ```rust
-/// let mut data = vec![]; // Inicializa o vetor de dados
-/// login_menu("senha_mestra", &mut data);
 /// ```
-fn login_menu() {
-    clear_terminal();
-    println!("Por favor insira a sua senha mestra!");
-    
+/// // Inicializa o gerenciador de senhas
+/// init();
+/// ```
+///
+
+ pub fn init() {
+    // Verifica se o diretório "data" existe
+    let data = Path::new("data").exists();
+
+    // Se o diretório "data" existir, vá para o menu de login
+    if data {
+        login_menu();
+    } else {
+        // Se o diretório "data" não existir, limpe o terminal e solicite que o usuário defina uma nova senha
+        clear_terminal();
+        println!("Por favor, insira sua nova senha");
+    }
+
+    // Lê a entrada do usuário para a nova senha
     let mut inserted_password = String::new();
+    stdin()
+        .read_line(&mut inserted_password)
+        .expect("Por favor, insira um valor válido");
 
-    stdin().read_line(&mut inserted_password).expect("Por favor insira um valor válido");
-
+    // Remove espaços em branco no início ou no final da senha
     let inserted_password = inserted_password.trim();
 
-    let key = generate_key(inserted_password);
-    match read_data_from_disk(&key) {
-        Ok(data) => return main_menu(data, key),
-        Err(_) => ()
-    };
+    // Cria um vetor vazio para armazenar dados (entradas)
+    let data = Vec::new();
 
-    login_menu();
+    // Gera uma chave de criptografia com base na senha inserida
+    let key = generate_key(inserted_password);
+
+    // Chama a função do menu principal com os dados inicializados e a chave de criptografia
+    main_menu(data, key);
+}
+
+
+////
+/// Menu de Login
+///
+/// Esta função exibe o menu de login, solicitando a inserção da senha mestra. A senha inserida é
+/// utilizada para gerar uma chave de criptografia, que é então utilizada para desbloquear o acesso
+/// aos dados armazenados no disco. Se a leitura dos dados for bem-sucedida, o usuário é direcionado
+/// para o menu principal; caso contrário, o menu de login é exibido novamente.
+///
+/// # Exemplo
+///
+/// ```
+/// // Chama o menu de login
+/// login_menu();
+/// ```
+///
+/// # Observação
+///
+/// Este é um exemplo simplificado, e a implementação real pode envolver verificações mais robustas
+/// e tratamento de erros mais detalhado.
+////
+fn login_menu() {
+    // Limpa o terminal antes de exibir o menu de login
+    clear_terminal();
+    
+    // Solicita a inserção da senha mestra
+    println!("Por favor, insira a sua senha mestra!");
+    
+    // Lê a senha inserida pelo usuário
+    let mut inserted_password = String::new();
+    stdin().read_line(&mut inserted_password).expect("Por favor, insira um valor válido");
+
+    // Remove espaços em branco no início ou no final da senha
+    let inserted_password = inserted_password.trim();
+
+    // Gera uma chave de criptografia com base na senha inserida
+    let key = generate_key(inserted_password);
+
+    // Tenta ler os dados do disco utilizando a chave de criptografia
+    match read_data_from_disk(&key) {
+        Ok(data) => main_menu(data, key),  // Se a leitura for bem-sucedida, chama o menu principal
+        Err(_) => login_menu(),  // Se ocorrer um erro, exibe novamente o menu de login
+    };
 }
 
 

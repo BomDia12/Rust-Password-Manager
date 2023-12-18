@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Módulo que lida da encriptação e decriptação dos dados gerados"><title>cli_password_manager::encryption - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-cb6f1f67f1bcd037.css" id="mainThemeStyle"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cli_password_manager" data-themes="" data-resource-suffix="" data-rustdoc-version="1.73.0 (cc66ad468 2023-10-03)" data-channel="1.73.0" data-search-js="search-6dfdfced5eff6596.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-1596385f77d47ef2.css" data-theme-dark-css="dark-0a43001d3fc2282c.css" data-theme-ayu-css="ayu-fd19013d6ce078bf.css" ><script src="../../static.files/storage-db41da1a38ea3cb8.js"></script><script defer src="../../static.files/main-0795b7d26be81095.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-1596385f77d47ef2.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-0a43001d3fc2282c.css"><link rel="stylesheet" href="../../static.files/noscript-cffde32267a19fd6.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../../cli_password_manager/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../../cli_password_manager/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">Module encryption</a></h2><div class="sidebar-elems"><section><ul class="block"><li><a href="#functions">Functions</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Module <a href="../index.html">cli_password_manager</a>::<wbr><a class="mod" href="#">encryption</a><button id="copy-path" title="Copy item path to clipboard"><img src="../../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../../src/cli_password_manager/encryption.rs.html#1-118">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>Módulo que lida da encriptação e decriptação dos dados gerados</p>
+<h2 id="visão-geral---aes"><a href="#visão-geral---aes">Visão Geral - AES</a></h2>
+<p>Advanced Encryption Standard (aes) também conhecida como <em>cifra de Rijndael</em>, é uma cifra de blocos
+de tamanho fixo simétrica, ou seja, divide a mensagem (texto que deseja-se cifrar) em blocos de N bits
+no qual realiza o processo de cifração/decifração, no qual ambos possuem mesma chave. N pode possuir os valores de 128, 194 ou 256 bits.
+Nas funções abaixo, a versão implementada da cifra de Rijndael foi a de 256 bits.
+Uma de suas vantagens diante aos algortimos de cifração que o sucedeu é o tamanho N bits que ataques de força bruta sejam inviáveis para
+a quebra de sigílo.</p>
+<h3 id="blocos-e-rodadas"><a href="#blocos-e-rodadas">Blocos e rodadas</a></h3>
+<p>A mensagem é dividida em blocos de N bits e cada um desses blocos é aplicado o algoritmo de cifração e decifração da cifra de Rinjdael.</p>
+<p>Tanto para cifrar tanto para decifrar, o aes executa o mesmo processo dividido em rodadas, diferem-se uma da outra apenas em relação a ordem dos processos executados.
+O número de rodadas a ser aplicado varia conforme o número de bits escolhido:</p>
+<ul>
+<li>10 para 128 bits</li>
+<li>12 para 194 bits</li>
+<li>14 para 256 bits</li>
+</ul>
+<p>Em cada uma delas, 4 métodos diferentes são aplicados sob o bloco a fim de produzir “maior aleatoriedade” no resultado final. O bloco possui um “estado” que é alterado a cada passo
+do algoritmo e é interpretado como uma matriz, no qual cada item da matriz refere-se a um byte.</p>
+<h4 id="métodos"><a href="#métodos">Métodos</a></h4><h5 id="addroundkey"><a href="#addroundkey">AddRoundKey</a></h5>
+<p>Cada byte do estado é combinado com um byte da <em>chave de rodada</em> utilizando da operação XOR bit a bit.</p>
+<h5 id="subbytes"><a href="#subbytes">SubBytes</a></h5>
+<p>Substituição não linear dos bytes utilizando-se de uma tabela de pesquisa, por padrão a <strong>S-Box</strong></p>
+<h5 id="shiftrows"><a href="#shiftrows">ShiftRows</a></h5>
+<p>Opera nas linhas do estado, fazendo permutação dos bytes de uma mesma linha</p>
+<h5 id="mixcolumns"><a href="#mixcolumns">MixColumns</a></h5>
+<p>Fornece difusão na cifra, no qual cada coluna da matriz é transformada utilizando-se de uma matriz fixa. As entradas
+são tratadas como polinômios sobre GF (2⁸).</p>
+<h3 id="cifração-e-decifração-por-rodada"><a href="#cifração-e-decifração-por-rodada">Cifração e decifração por rodada</a></h3>
+<p>O processo de cifração ocorre na seguinte ordem:</p>
+<ul>
+<li>SubBytes</li>
+<li>ShiftRows</li>
+<li>MixColumns</li>
+<li>AddRoundKey
+Com exceção do último round que não faz a operação de mix columns</li>
+</ul>
+<p>O processo de decifração ocorre na seguinte ordem:</p>
+<ul>
+<li>Inverse ShiftRows</li>
+<li>Inverse SubBytes</li>
+<li>AddRoundKey</li>
+<li>Inverse MixColumns
+Com exceção do último round que não faz a operação de inverse mix columns</li>
+</ul>
+</div></details><h2 id="functions" class="small-section-header"><a href="#functions">Functions</a></h2><ul class="item-table"><li><div class="item-name"><a class="fn" href="fn.decrypt_data.html" title="fn cli_password_manager::encryption::decrypt_data">decrypt_data</a></div><div class="desc docblock-short">Função de decifrar</div></li><li><div class="item-name"><a class="fn" href="fn.encrypt_data.html" title="fn cli_password_manager::encryption::encrypt_data">encrypt_data</a></div><div class="desc docblock-short">Função de encriptar</div></li><li><div class="item-name"><a class="fn" href="fn.generate_key.html" title="fn cli_password_manager::encryption::generate_key">generate_key</a></div><div class="desc docblock-short">Função para gerar hash de 256 bits</div></li></ul></section></div></main></body></html>

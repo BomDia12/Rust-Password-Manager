@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["clear_terminal","delete_password","init","login_menu","main_menu","new_password","print_saved_passwords","stored_passwords"]};

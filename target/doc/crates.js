@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["bitflags","cfg_if","cli_password_manager","foreign_types","foreign_types_shared","getrandom","itoa","libc","once_cell","openssl","openssl_macros","openssl_sys","ppv_lite86","proc_macro2","quote","rand","rand_chacha","rand_core","ryu","serde","serde_derive","serde_json","syn","unicode_ident"];

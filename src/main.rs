@@ -28,20 +28,20 @@
 //! 
 //! ## Construtores
 //! 
-//! Em geral os contrutores de Rust são bem similar aos de C com alguns diferenças marcantes, primeiro, em Rust, o tipo
-//! da variável, sempre que possível é inferido do contexto, por exemplo:
+//! Em geral, os construtores de Rust são bem similares aos de C, com alguns diferenças marcantes. Primeiro, em Rust, o tipo
+//! da variável, sempre que possível, é inferido do contexto, por exemplo:
 //! ```
 //! let a = 5
 //! let b: i32 = 5
 //! ```
-//! Dessa forma, o Rust diminui a quantidade de boilerplate, enquanto mantém a tipagem estática.
+//! Dessa forma, o Rust diminui a quantidade de boilerplates, enquanto mantém a tipagem estática.
 //! 
-//! Para declaramos funções utilizamos a seguinte sintaxe
+//! Para declaramos funções, utilizamos a seguinte sintaxe
 //! ```
 //! fn main(arg1: type1) -> return_type {
 //! }
 //! ```
-//! Com os tipos dos argumentos e o tipo de retorno (a não ser que a função não tenho um retorno, nesse caso, a parte do tipo de
+//! Com os tipos dos argumentos e o tipo de retorno (a não ser que a função não tenha um retorno, nesse caso, a parte do tipo de
 //! retorno pode ficar vazia). Para retornar o que está dentro da função podemos colocar a palavra-chave `return`, ou, se estamos
 //! no final da função, apenas colocar o valor a ser retornado sem `;` depois:
 //! ```
@@ -55,7 +55,7 @@
 //!     return x * 2;
 //! }
 //! ```
-//! Structs e Enums são declaradas de formas similares a em C. 
+//! Structs e Enums são declaradas de formas similares a C. 
 //! 
 //! ## Avaliaçao da linguagem em relação aos critérios de avaliação
 //! 
@@ -193,11 +193,11 @@
 //! a checagem de Structs ou Enums que tenham os mesmos tipos internos, mas nomes diferentes é com a checagem de nomes,
 //! o que também aumenta a confiabilidade na linguagem.
 //! 
-//! exemplo: Função de ler arquivos
+//! Exemplo: Função de ler arquivos
 //! ```
 //! pub fn read<P: AsRef<Path>>(path: P) -> io::Result<Vec<u8>> 
 //! ```
-//! Temos que tratar de alguma forma com o possível erro antes de podermos acessar o valor lido. Isso é implementado usando o enum
+//! Temos que tratar de alguma forma o possível erro antes de podermos acessar o valor lido. Isso é implementado usando o enum
 //! Result, visto abaixo.
 //! ```
 //! enum Result<T, E> {

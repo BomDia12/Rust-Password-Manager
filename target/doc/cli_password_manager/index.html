@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Gerenciador de senhas CLI"><title>cli_password_manager - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-cb6f1f67f1bcd037.css" id="mainThemeStyle"><meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="cli_password_manager" data-themes="" data-resource-suffix="" data-rustdoc-version="1.73.0 (cc66ad468 2023-10-03)" data-channel="1.73.0" data-search-js="search-6dfdfced5eff6596.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-1596385f77d47ef2.css" data-theme-dark-css="dark-0a43001d3fc2282c.css" data-theme-ayu-css="ayu-fd19013d6ce078bf.css" ><script src="../static.files/storage-db41da1a38ea3cb8.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-0795b7d26be81095.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../static.files/light-1596385f77d47ef2.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../static.files/dark-0a43001d3fc2282c.css"><link rel="stylesheet" href="../static.files/noscript-cffde32267a19fd6.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../cli_password_manager/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../cli_password_manager/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">Crate cli_password_manager</a></h2><div class="sidebar-elems"><ul class="block"><li class="version">Version 0.1.0</li><li><a id="all-types" href="all.html">All Items</a></li></ul><section><ul class="block"><li><a href="#modules">Modules</a></li><li><a href="#functions">Functions</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Crate <a class="mod" href="#">cli_password_manager</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../src/cli_password_manager/main.rs.html#1-239">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="gerenciador-de-senhas-cli"><a href="#gerenciador-de-senhas-cli">Gerenciador de senhas CLI</a></h2>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Gerenciador de senhas CLI"><title>cli_password_manager - Rust</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../static.files/rustdoc-f0d0e155d187fa31.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="cli_password_manager" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0 (90c541806 2023-05-31) (built from a source tarball)" data-search-js="search-e077946657036a58.js" data-settings-js="settings-298e1ea74db45b39.js" data-settings-css="settings-7bfb4c59cc6bc502.css" data-theme-light-css="light-0f8c037637f9eb3e.css" data-theme-dark-css="dark-1097f8e92a01e3cf.css" data-theme-ayu-css="ayu-614652228113ac93.css" ></div><script src="../static.files/storage-62ce34ea385b278a.js"></script><script defer src="../crates.js"></script><script defer src="../static.files/main-f61008743c98d196.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../static.files/light-0f8c037637f9eb3e.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../static.files/dark-1097f8e92a01e3cf.css"><link rel="stylesheet" href="../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc mod crate"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="logo-container" href="../cli_password_manager/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2></h2></nav><nav class="sidebar"><a class="logo-container" href="../cli_password_manager/index.html"><img class="rust-logo" src="../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><h2 class="location"><a href="#">Crate cli_password_manager</a></h2><div class="sidebar-elems"><ul class="block"><li class="version">Version 0.1.0</li><li><a id="all-types" href="all.html">All Items</a></li></ul><section><ul class="block"><li><a href="#modules">Modules</a></li><li><a href="#functions">Functions</a></li></ul></section></div></nav><main><div class="width-limiter"><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="main-heading"><h1>Crate <a class="mod" href="#">cli_password_manager</a><button id="copy-path" title="Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="srclink" href="../src/cli_password_manager/main.rs.html#1-343">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>&#x2212;</span>]</button></span></div><details class="toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><h2 id="gerenciador-de-senhas-cli"><a href="#gerenciador-de-senhas-cli">Gerenciador de senhas CLI</a></h2>
 <p>Este projeto foi desenvolvido em Rust no contexto da disciplina Linguagens de Programção
 ministrada pelo professor Marcelo Ladeira. Ele visa explorar a linguagem Rust que foi escolhida pela turma
 como a Linguagem a ser usada no desenvolvimento dos projetos.</p>
@@ -21,6 +21,30 @@ programador não lide diretamente com gerenciamento de memória, mas retira a ne
 algo que diminui a performance das aplicações de linguagens que a implementam.</p>
 <p>Um outro foco que Rust teve, em seu desenvolvimento, é a criação de arquivos compilados pequenos, o que permite que
 seja uma linguagem com grande aplicabilidade no setor de embarcados.</p>
+<h3 id="construtores"><a href="#construtores">Construtores</a></h3>
+<p>Em geral, os construtores de Rust são bem similares aos de C, com alguns diferenças marcantes. Primeiro, em Rust, o tipo
+da variável, sempre que possível, é inferido do contexto, por exemplo:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>a = <span class="number">5
+</span><span class="kw">let </span>b: i32 = <span class="number">5</span></code></pre></div>
+<p>Dessa forma, o Rust diminui a quantidade de boilerplates, enquanto mantém a tipagem estática.</p>
+<p>Para declaramos funções, utilizamos a seguinte sintaxe</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">fn </span>main(arg1: type1) -&gt; return_type {
+}</code></pre></div>
+<p>Com os tipos dos argumentos e o tipo de retorno (a não ser que a função não tenha um retorno, nesse caso, a parte do tipo de
+retorno pode ficar vazia). Para retornar o que está dentro da função podemos colocar a palavra-chave <code>return</code>, ou, se estamos
+no final da função, apenas colocar o valor a ser retornado sem <code>;</code> depois:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">fn </span>vezes_2(x: i32) -&gt; i32 {
+    x * <span class="number">2
+</span>}</code></pre></div>
+<p>ou</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">fn </span>vezes_2(x: i32) -&gt; i32 {
+    <span class="kw">return </span>x * <span class="number">2</span>;
+}</code></pre></div>
+<p>Structs e Enums são declaradas de formas similares a C. </p>
 <h3 id="avaliaçao-da-linguagem-em-relação-aos-critérios-de-avaliação"><a href="#avaliaçao-da-linguagem-em-relação-aos-critérios-de-avaliação">Avaliaçao da linguagem em relação aos critérios de avaliação</a></h3><h4 id="legibilidade"><a href="#legibilidade">Legibilidade</a></h4>
 <p>Rust é uma linguagem muito estruturada, e, uma vez que o programador é familiar com o funcionamento
 da linguagem, a forma como o compilador força o código a ser escrito é muito mais fácil de se entender
@@ -28,6 +52,18 @@ do que é possível em uma linguagem como C.</p>
 <p>Um exmplo claro disso, é a forma como Rust implementa mutabilidade. Por padrão, as variáveis em Rust são constantes
 e tem que ter um tipo a mais (<code>mut</code>) para serem mutáveis. Dessa forma, o programador, ao ler o código, entende
 exatamente quais variáveis serão mudadas ao longo do desenvolvimento e quais não serão.</p>
+<p>Código C</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>int multiplica_por_x(int valor) {
+    int x = <span class="number">10</span>;
+    <span class="kw">return </span>x * valor;
+}</code></pre></div>
+<p>Código Rust</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">fn </span>multiplica_por_x(valor: i32) -&gt; i32 {
+    <span class="kw">let </span>x = <span class="number">10</span>;
+    x * valor
+}</code></pre></div>
 <p>Rust tem muitas ferramentas que facilitam a leitura de código, uma das principais é o seu robusto sistema de tipagem.
 Em Rust, todos os tipos básicos são bem intuitivos, com os inteiros (<code>u8</code>, <code>i8</code>, <code>u16</code>, …), por exemplo,
 explicitando se o tipo possui sinal, e quantos bits o tipo tem (algo mais intuitivo que <code>char</code>, <code>short</code>, <code>int</code>,
@@ -38,7 +74,21 @@ mais úteis.</p>
 Por meio da keyword <code>impl</code> é possível implementar métodos para essas Structs, tanto métodos gerais, que não necessitam de
 uma instância da Struct, quanto métodos específicos, que utlizam ou modificam o objeto que chamou a função. Além
 disso, quando uma Struct é declarada em um módulo, ela pode especificar quais propriedades da Struct são públicas
-e quais são privadas.</p>
+e quais são privadas. O único ponto em que Structs se diferenciam de Classes, é a falta de Heranças.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>Struct Pessoa {
+    primeiro_nome: String,
+    sobrenome: String,
+    cpf: String,
+}
+ 
+<span class="kw">impl </span>Pessoa {
+    <span class="kw">fn </span>nome_completo(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
+        <span class="kw">let </span><span class="kw-2">mut </span>res = <span class="self">self</span>.primeio_nome.clone;
+        res.push_str(<span class="kw-2">&amp;</span><span class="self">self</span>.sobrenome);
+        res
+    }
+}</code></pre></div>
 <p>Em relação a Enums, Rust os suporta como uma das principais estruturas de dados da linguagem. Tendo isso em vista,
 Rust permite que cada valor enumerado receba uma variável de um tipo diferente, o que facilita muito lidar com,
 por exemplo, endereços de ip, como visto no código abaixo:</p>
@@ -47,23 +97,48 @@ por exemplo, endereços de ip, como visto no código abaixo:</p>
     V4(u8, u8, u8, u8),
     V6(String),
 }</code></pre></div>
-<p>Além disso, Rust também permite a implementação de métodos novos para Enums, assim como para Structs.</p>
 <p>Por ultimo, mas não menos importante, devido a implentação de mutabilidade como um tipo em Rust, a assinatura das
 funções informa muito mais o usuário, uma vez que explicita se a função modifica, ou não um parâmetro, o que evita
 erros de efeitos colaterais quando usando um biblioteca externa.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">fn </span>double_1 (list: <span class="kw-2">&amp;mut </span>Vec&lt;u8&gt;);
+<span class="kw">fn </span>double_2 (list: <span class="kw-2">&amp;</span>Vec&lt;u8&gt;) -&gt; Vec&lt;u8&gt;;</code></pre></div>
+<p>Como podemos ver, apenas pela assinatura podemos saber que a primeira função modifica o Vetor, enquanto a segunda
+retorna um novo vetor baseado nas informações do vetor passado.</p>
 <h4 id="capacidade-de-escrita"><a href="#capacidade-de-escrita">Capacidade de Escrita</a></h4>
 <p>Uma característica de Rust que aumenta a habilidade de escrita é como ele lida com o análogo dele aos ponteiros de C.
 Em rust, um referência também é escrita como <code>&amp;var</code> sendo <code>var</code> a variável que será referenciada. Porém,
 o programador não precisa adicionar alguma informação (o <code>*</code> do C) para utilizar a
 referência, basta colocar o parâmetro que será utilizado, o compilador automaticamente traduz a referência
 para o valor que deve ser usado.</p>
-<p>Em termos mais gerais, não tem uma capacidade de escrita muito elevada. Como o principal foco de Rust é confiança e
-segurança, o compilador aplica muitas regras que o programador deve seguir, se não o programa não compila. Um bom
-exemplo disso é o borrow-checker, que deixa a passagem de parâmetros muito mais complicada em Rust.</p>
+<p>Em C:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>int cinco = <span class="number">5</span>;
+int * ptr = <span class="kw-2">&amp;</span>cinco;
+<span class="kw">return </span><span class="number">10 </span>* <span class="kw-2">*</span>(ptr);</code></pre></div>
+<p>Em Rust:</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>cinco = <span class="number">5</span>;
+<span class="kw">let </span>ptr = <span class="kw-2">&amp;</span>cinco;
+<span class="kw">return </span><span class="number">10 </span>* ptr;</code></pre></div>
 <p>Por outro lado, Rust possui um bom suporte para a abstração, com a adição de métodos a structs e enums sendo um bom
 exemplo disso. Uma outra forma que Rust aumenta o suporte para a abstração é a facilidade com que você pode segregar
 diferentes partes do código para que um arquivo só exporte as funções finais que ele implementa, não qualquer uma 
 intermediaria, que seja para uso apenas interno.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code>Struct Pessoa {
+    primeiro_nome: String,
+    sobrenome: String,
+    cpf: String,
+}
+ 
+<span class="kw">impl </span>Pessoa {
+    <span class="kw">fn </span>nome_completo(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; String {
+        <span class="kw">let </span><span class="kw-2">mut </span>res = <span class="self">self</span>.primeio_nome.clone;
+        res.push_str(<span class="kw-2">&amp;</span><span class="self">self</span>.sobrenome);
+        res
+    }
+}</code></pre></div>
 <p>Em termos de expressividade e sintaxe, Rust é bem similar a C.</p>
 <p>Um outro ponto que auxilia muito na capacidade de escrita do Rust é o seu compilador. O Compilador Rust é muito bom
 em encontrar possíveis problemas no código, e, quando ele mostra um erro, ele explicita em que parte do código o erro foi
@@ -75,8 +150,11 @@ foi realizado para que a linguagem seja o mais confiável possivel.</p>
 algumas coisas que outras linguagens deixariam a parte, como exceções e mutabilidade. A forma como Rust lida com
 a checagem de Structs ou Enums que tenham os mesmos tipos internos, mas nomes diferentes é com a checagem de nomes,
 o que também aumenta a confiabilidade na linguagem.</p>
-<p>Tratamento de exceções. Rust é muito bom no quesito tratamento de exceções. Como dito anteriormente, Rust lida com
-exceções, na maioria das vezes como um tipo, com funções que podem falhar retornando o seguinte Enum:</p>
+<p>Exemplo: Função de ler arquivos</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">pub fn </span>read&lt;P: AsRef&lt;Path&gt;&gt;(path: P) -&gt; io::Result&lt;Vec&lt;u8&gt;&gt; </code></pre></div>
+<p>Temos que tratar de alguma forma o possível erro antes de podermos acessar o valor lido. Isso é implementado usando o enum
+Result, visto abaixo.</p>
 
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">enum </span><span class="prelude-ty">Result</span>&lt;T, E&gt; {
     <span class="prelude-val">Ok</span>(T),
@@ -86,6 +164,11 @@ exceções, na maioria das vezes como um tipo, com funções que podem falhar re
 só isso, mas o Rust incentiva o tratamento de exceções e a lidar com diferentes valores de uma variável com uma expressão
 <code>match</code>, que, embora inicialmente pareça similar a um <code>switch-case</code>, força o programador a lidar com todos os valores possíveis
 para aquela variável, o que aumenta muito a confiabilidade.</p>
+
+<div class="example-wrap"><pre class="rust rust-example-rendered"><code><span class="kw">let </span>encrypted_data = <span class="kw">match </span>fs::read(<span class="string">&quot;data&quot;</span>) {
+    <span class="prelude-val">Ok</span>(data) =&gt; data,
+    <span class="prelude-val">Err</span>(<span class="kw">_</span>) =&gt; <span class="kw">return </span><span class="prelude-val">Err</span>(())
+};</code></pre></div>
 <p>Mas, o que é provavelmente a maior razão para a confiabilidade do Rust é o Borrow-checker. Esta é um etapa na compilação que
 impõe um conjunto de regras que tem como objetivo minimizar os problemas que o programador pode ter com efeitos colaterais e
 os valores dentro de uma função. O que o Borrow-checker impõe é que cada variável só pode ter um “dono”, e, assim que este dono
@@ -197,4 +280,4 @@ features.</p>
 <p>O código pode ser rodado a partir do arquivo em <code>./target/release/cli-password-manager</code>. É possível que o código não rode em
 algum outro sistema operacional, para o qual o projeto foi compilado. Caso isso seja verdade, o projeto pode ser compilado com
 o auxílio do cargo por meio do comando <code>cargo run</code>, esse comando compila e imediatamente roda o executável.</p>
-</div></details><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2><ul class="item-table"><li><div class="item-name"><a class="mod" href="encryption/index.html" title="mod cli_password_manager::encryption">encryption</a></div><div class="desc docblock-short">Módulo que lida da encriptação e decriptação dos dados gerados</div></li><li><div class="item-name"><a class="mod" href="interfaces/index.html" title="mod cli_password_manager::interfaces">interfaces</a></div><div class="desc docblock-short">Módulo que implementa as interfaces que integragem com o usuário</div></li><li><div class="item-name"><a class="mod" href="persistency/index.html" title="mod cli_password_manager::persistency">persistency</a></div><div class="desc docblock-short">Módulo que implementa a persistência das senhas guardadas</div></li><li><div class="item-name"><a class="mod" href="suggest_password/index.html" title="mod cli_password_manager::suggest_password">suggest_password</a></div><div class="desc docblock-short">Módulo que cria uma senha aleatória para o usuário</div></li><li><div class="item-name"><a class="mod" href="types/index.html" title="mod cli_password_manager::types">types</a></div><div class="desc docblock-short">Módulo que implementa o tipo básico utilizado pela maioria do projeto</div></li></ul><h2 id="functions" class="small-section-header"><a href="#functions">Functions</a></h2><ul class="item-table"><li><div class="item-name"><a class="fn" href="fn.main.html" title="fn cli_password_manager::main">main</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short"> Função geral do código, apenas chama a <a href="cli::login_menu">função de login da interface cli</a></div></li></ul></section></div></main></body></html>
+</div></details><h2 id="modules" class="small-section-header"><a href="#modules">Modules</a></h2><ul class="item-table"><li><div class="item-name"><a class="mod" href="encryption/index.html" title="mod cli_password_manager::encryption">encryption</a></div><div class="desc docblock-short">Módulo que lida da encriptação e decriptação dos dados gerados</div></li><li><div class="item-name"><a class="mod" href="interfaces/index.html" title="mod cli_password_manager::interfaces">interfaces</a></div><div class="desc docblock-short">Módulo que implementa as interfaces que integragem com o usuário</div></li><li><div class="item-name"><a class="mod" href="persistency/index.html" title="mod cli_password_manager::persistency">persistency</a></div><div class="desc docblock-short">Módulo que implementa a persistência das senhas guardadas</div></li><li><div class="item-name"><a class="mod" href="suggest_password/index.html" title="mod cli_password_manager::suggest_password">suggest_password</a></div><div class="desc docblock-short">Módulo que cria uma senha aleatória para o usuário</div></li><li><div class="item-name"><a class="mod" href="types/index.html" title="mod cli_password_manager::types">types</a></div><div class="desc docblock-short">Módulo que implementa o tipo básico utilizado pela maioria do projeto</div></li></ul><h2 id="functions" class="small-section-header"><a href="#functions">Functions</a></h2><ul class="item-table"><li><div class="item-name"><a class="fn" href="fn.main.html" title="fn cli_password_manager::main">main</a><span title="Restricted Visibility">&nbsp;🔒</span> </div><div class="desc docblock-short"> Função geral do código, apenas chama a <a href="interfaces/cli/fn.init.html" title="fn cli_password_manager::interfaces::cli::init">função de iniciar a interface cli</a></div></li></ul></section></div></main></body></html>

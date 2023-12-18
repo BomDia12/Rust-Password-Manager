@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src\main.rs`."><title>main.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-cb6f1f67f1bcd037.css" id="mainThemeStyle"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cli_password_manager" data-themes="" data-resource-suffix="" data-rustdoc-version="1.73.0 (cc66ad468 2023-10-03)" data-channel="1.73.0" data-search-js="search-6dfdfced5eff6596.js" data-settings-js="settings-de11bff964e9d4e5.js" data-settings-css="settings-8c76f75bfb6bd192.css" data-theme-light-css="light-1596385f77d47ef2.css" data-theme-dark-css="dark-0a43001d3fc2282c.css" data-theme-ayu-css="ayu-fd19013d6ce078bf.css" ><script src="../../static.files/storage-db41da1a38ea3cb8.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-0795b7d26be81095.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-1596385f77d47ef2.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-0a43001d3fc2282c.css"><link rel="stylesheet" href="../../static.files/noscript-cffde32267a19fd6.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../cli_password_manager/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/main.rs`."><title>main.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-f0d0e155d187fa31.css" id="mainThemeStyle"><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cli_password_manager" data-themes="" data-resource-suffix="" data-rustdoc-version="1.70.0 (90c541806 2023-05-31) (built from a source tarball)" data-search-js="search-e077946657036a58.js" data-settings-js="settings-298e1ea74db45b39.js" data-settings-css="settings-7bfb4c59cc6bc502.css" data-theme-light-css="light-0f8c037637f9eb3e.css" data-theme-dark-css="dark-1097f8e92a01e3cf.css" data-theme-ayu-css="ayu-614652228113ac93.css" ></div><script src="../../static.files/storage-62ce34ea385b278a.js"></script><script defer src="../../static.files/source-script-905937fbbdc8e9ea.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-f61008743c98d196.js"></script><noscript><link rel="stylesheet" media="(prefers-color-scheme:light)" href="../../static.files/light-0f8c037637f9eb3e.css"><link rel="stylesheet" media="(prefers-color-scheme:dark)" href="../../static.files/dark-1097f8e92a01e3cf.css"><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../cli_password_manager/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -237,6 +237,110 @@
 <a href="#237" id="237">237</a>
 <a href="#238" id="238">238</a>
 <a href="#239" id="239">239</a>
+<a href="#240" id="240">240</a>
+<a href="#241" id="241">241</a>
+<a href="#242" id="242">242</a>
+<a href="#243" id="243">243</a>
+<a href="#244" id="244">244</a>
+<a href="#245" id="245">245</a>
+<a href="#246" id="246">246</a>
+<a href="#247" id="247">247</a>
+<a href="#248" id="248">248</a>
+<a href="#249" id="249">249</a>
+<a href="#250" id="250">250</a>
+<a href="#251" id="251">251</a>
+<a href="#252" id="252">252</a>
+<a href="#253" id="253">253</a>
+<a href="#254" id="254">254</a>
+<a href="#255" id="255">255</a>
+<a href="#256" id="256">256</a>
+<a href="#257" id="257">257</a>
+<a href="#258" id="258">258</a>
+<a href="#259" id="259">259</a>
+<a href="#260" id="260">260</a>
+<a href="#261" id="261">261</a>
+<a href="#262" id="262">262</a>
+<a href="#263" id="263">263</a>
+<a href="#264" id="264">264</a>
+<a href="#265" id="265">265</a>
+<a href="#266" id="266">266</a>
+<a href="#267" id="267">267</a>
+<a href="#268" id="268">268</a>
+<a href="#269" id="269">269</a>
+<a href="#270" id="270">270</a>
+<a href="#271" id="271">271</a>
+<a href="#272" id="272">272</a>
+<a href="#273" id="273">273</a>
+<a href="#274" id="274">274</a>
+<a href="#275" id="275">275</a>
+<a href="#276" id="276">276</a>
+<a href="#277" id="277">277</a>
+<a href="#278" id="278">278</a>
+<a href="#279" id="279">279</a>
+<a href="#280" id="280">280</a>
+<a href="#281" id="281">281</a>
+<a href="#282" id="282">282</a>
+<a href="#283" id="283">283</a>
+<a href="#284" id="284">284</a>
+<a href="#285" id="285">285</a>
+<a href="#286" id="286">286</a>
+<a href="#287" id="287">287</a>
+<a href="#288" id="288">288</a>
+<a href="#289" id="289">289</a>
+<a href="#290" id="290">290</a>
+<a href="#291" id="291">291</a>
+<a href="#292" id="292">292</a>
+<a href="#293" id="293">293</a>
+<a href="#294" id="294">294</a>
+<a href="#295" id="295">295</a>
+<a href="#296" id="296">296</a>
+<a href="#297" id="297">297</a>
+<a href="#298" id="298">298</a>
+<a href="#299" id="299">299</a>
+<a href="#300" id="300">300</a>
+<a href="#301" id="301">301</a>
+<a href="#302" id="302">302</a>
+<a href="#303" id="303">303</a>
+<a href="#304" id="304">304</a>
+<a href="#305" id="305">305</a>
+<a href="#306" id="306">306</a>
+<a href="#307" id="307">307</a>
+<a href="#308" id="308">308</a>
+<a href="#309" id="309">309</a>
+<a href="#310" id="310">310</a>
+<a href="#311" id="311">311</a>
+<a href="#312" id="312">312</a>
+<a href="#313" id="313">313</a>
+<a href="#314" id="314">314</a>
+<a href="#315" id="315">315</a>
+<a href="#316" id="316">316</a>
+<a href="#317" id="317">317</a>
+<a href="#318" id="318">318</a>
+<a href="#319" id="319">319</a>
+<a href="#320" id="320">320</a>
+<a href="#321" id="321">321</a>
+<a href="#322" id="322">322</a>
+<a href="#323" id="323">323</a>
+<a href="#324" id="324">324</a>
+<a href="#325" id="325">325</a>
+<a href="#326" id="326">326</a>
+<a href="#327" id="327">327</a>
+<a href="#328" id="328">328</a>
+<a href="#329" id="329">329</a>
+<a href="#330" id="330">330</a>
+<a href="#331" id="331">331</a>
+<a href="#332" id="332">332</a>
+<a href="#333" id="333">333</a>
+<a href="#334" id="334">334</a>
+<a href="#335" id="335">335</a>
+<a href="#336" id="336">336</a>
+<a href="#337" id="337">337</a>
+<a href="#338" id="338">338</a>
+<a href="#339" id="339">339</a>
+<a href="#340" id="340">340</a>
+<a href="#341" id="341">341</a>
+<a href="#342" id="342">342</a>
+<a href="#343" id="343">343</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! # Gerenciador de senhas CLI
 //! 
 //! Este projeto foi desenvolvido em Rust no contexto da disciplina Linguagens de Programção
@@ -265,6 +369,37 @@
 //! Um outro foco que Rust teve, em seu desenvolvimento, é a criação de arquivos compilados pequenos, o que permite que
 //! seja uma linguagem com grande aplicabilidade no setor de embarcados.
 //! 
+//! ## Construtores
+//! 
+//! Em geral, os construtores de Rust são bem similares aos de C, com alguns diferenças marcantes. Primeiro, em Rust, o tipo
+//! da variável, sempre que possível, é inferido do contexto, por exemplo:
+//! ```
+//! let a = 5
+//! let b: i32 = 5
+//! ```
+//! Dessa forma, o Rust diminui a quantidade de boilerplates, enquanto mantém a tipagem estática.
+//! 
+//! Para declaramos funções, utilizamos a seguinte sintaxe
+//! ```
+//! fn main(arg1: type1) -&gt; return_type {
+//! }
+//! ```
+//! Com os tipos dos argumentos e o tipo de retorno (a não ser que a função não tenha um retorno, nesse caso, a parte do tipo de
+//! retorno pode ficar vazia). Para retornar o que está dentro da função podemos colocar a palavra-chave `return`, ou, se estamos
+//! no final da função, apenas colocar o valor a ser retornado sem `;` depois:
+//! ```
+//! fn vezes_2(x: i32) -&gt; i32 {
+//!     x * 2
+//! }
+//! ```
+//! ou
+//! ```
+//! fn vezes_2(x: i32) -&gt; i32 {
+//!     return x * 2;
+//! }
+//! ```
+//! Structs e Enums são declaradas de formas similares a C. 
+//! 
 //! ## Avaliaçao da linguagem em relação aos critérios de avaliação
 //! 
 //! ### Legibilidade
@@ -275,6 +410,21 @@
 //! Um exmplo claro disso, é a forma como Rust implementa mutabilidade. Por padrão, as variáveis em Rust são constantes
 //! e tem que ter um tipo a mais (`mut`) para serem mutáveis. Dessa forma, o programador, ao ler o código, entende
 //! exatamente quais variáveis serão mudadas ao longo do desenvolvimento e quais não serão.
+//! 
+//! Código C
+//! ```
+//! int multiplica_por_x(int valor) {
+//!     int x = 10;
+//!     return x * valor;
+//! }
+//! ```
+//! Código Rust
+//! ```
+//! fn multiplica_por_x(valor: i32) -&gt; i32 {
+//!     let x = 10;
+//!     x * valor
+//! }
+//! ```
 //! 
 //! Rust tem muitas ferramentas que facilitam a leitura de código, uma das principais é o seu robusto sistema de tipagem.
 //! Em Rust, todos os tipos básicos são bem intuitivos, com os inteiros (`u8`, `i8`, `u16`, ...), por exemplo,
@@ -287,7 +437,23 @@
 //! Por meio da keyword `impl` é possível implementar métodos para essas Structs, tanto métodos gerais, que não necessitam de
 //! uma instância da Struct, quanto métodos específicos, que utlizam ou modificam o objeto que chamou a função. Além
 //! disso, quando uma Struct é declarada em um módulo, ela pode especificar quais propriedades da Struct são públicas
-//! e quais são privadas.
+//! e quais são privadas. O único ponto em que Structs se diferenciam de Classes, é a falta de Heranças.
+//! 
+//! ```
+//! Struct Pessoa {
+//!     primeiro_nome: String,
+//!     sobrenome: String,
+//!     cpf: String,
+//! }
+//! 
+//! impl Pessoa {
+//!     fn nome_completo(&amp;self) -&gt; String {
+//!         let mut res = self.primeio_nome.clone;
+//!         res.push_str(&amp;self.sobrenome);
+//!         res
+//!     }
+//! }
+//! ```
 //! 
 //! Em relação a Enums, Rust os suporta como uma das principais estruturas de dados da linguagem. Tendo isso em vista,
 //! Rust permite que cada valor enumerado receba uma variável de um tipo diferente, o que facilita muito lidar com,
@@ -300,11 +466,16 @@
 //! }
 //! ```
 //! 
-//! Além disso, Rust também permite a implementação de métodos novos para Enums, assim como para Structs.
-//! 
 //! Por ultimo, mas não menos importante, devido a implentação de mutabilidade como um tipo em Rust, a assinatura das
 //! funções informa muito mais o usuário, uma vez que explicita se a função modifica, ou não um parâmetro, o que evita
 //! erros de efeitos colaterais quando usando um biblioteca externa.
+//! 
+//! ```
+//! fn double_1 (list: &amp;mut Vec&lt;u8&gt;);
+//! fn double_2 (list: &amp;Vec&lt;u8&gt;) -&gt; Vec&lt;u8&gt;;
+//! ``` 
+//! Como podemos ver, apenas pela assinatura podemos saber que a primeira função modifica o Vetor, enquanto a segunda
+//! retorna um novo vetor baseado nas informações do vetor passado.
 //! 
 //! ### Capacidade de Escrita
 //! 
@@ -314,14 +485,40 @@
 //! referência, basta colocar o parâmetro que será utilizado, o compilador automaticamente traduz a referência
 //! para o valor que deve ser usado.
 //! 
-//! Em termos mais gerais, não tem uma capacidade de escrita muito elevada. Como o principal foco de Rust é confiança e
-//! segurança, o compilador aplica muitas regras que o programador deve seguir, se não o programa não compila. Um bom
-//! exemplo disso é o borrow-checker, que deixa a passagem de parâmetros muito mais complicada em Rust.
+//! Em C:
+//! ```
+//! int cinco = 5;
+//! int * ptr = &amp;cinco;
+//! return 10 * *(ptr);
+//! ```
+//! 
+//! Em Rust:
+//! ```
+//! let cinco = 5;
+//! let ptr = &amp;cinco;
+//! return 10 * ptr;
+//! ```
 //! 
 //! Por outro lado, Rust possui um bom suporte para a abstração, com a adição de métodos a structs e enums sendo um bom
 //! exemplo disso. Uma outra forma que Rust aumenta o suporte para a abstração é a facilidade com que você pode segregar
 //! diferentes partes do código para que um arquivo só exporte as funções finais que ele implementa, não qualquer uma 
 //! intermediaria, que seja para uso apenas interno.
+//! 
+//! ```
+//! Struct Pessoa {
+//!     primeiro_nome: String,
+//!     sobrenome: String,
+//!     cpf: String,
+//! }
+//! 
+//! impl Pessoa {
+//!     fn nome_completo(&amp;self) -&gt; String {
+//!         let mut res = self.primeio_nome.clone;
+//!         res.push_str(&amp;self.sobrenome);
+//!         res
+//!     }
+//! }
+//! ```
 //! 
 //! Em termos de expressividade e sintaxe, Rust é bem similar a C.
 //! 
@@ -339,8 +536,12 @@
 //! a checagem de Structs ou Enums que tenham os mesmos tipos internos, mas nomes diferentes é com a checagem de nomes,
 //! o que também aumenta a confiabilidade na linguagem.
 //! 
-//! Tratamento de exceções. Rust é muito bom no quesito tratamento de exceções. Como dito anteriormente, Rust lida com
-//! exceções, na maioria das vezes como um tipo, com funções que podem falhar retornando o seguinte Enum:
+//! Exemplo: Função de ler arquivos
+//! ```
+//! pub fn read&lt;P: AsRef&lt;Path&gt;&gt;(path: P) -&gt; io::Result&lt;Vec&lt;u8&gt;&gt; 
+//! ```
+//! Temos que tratar de alguma forma o possível erro antes de podermos acessar o valor lido. Isso é implementado usando o enum
+//! Result, visto abaixo.
 //! ```
 //! enum Result&lt;T, E&gt; {
 //!     Ok(T),
@@ -351,6 +552,13 @@
 //! só isso, mas o Rust incentiva o tratamento de exceções e a lidar com diferentes valores de uma variável com uma expressão
 //! `match`, que, embora inicialmente pareça similar a um `switch-case`, força o programador a lidar com todos os valores possíveis
 //! para aquela variável, o que aumenta muito a confiabilidade.
+//! 
+//! ```
+//! let encrypted_data = match fs::read(&quot;data&quot;) {
+//!     Ok(data) =&gt; data,
+//!     Err(_) =&gt; return Err(())
+//! };
+//! ```
 //! 
 //! Mas, o que é provavelmente a maior razão para a confiabilidade do Rust é o Borrow-checker. Esta é um etapa na compilação que
 //! impõe um conjunto de regras que tem como objetivo minimizar os problemas que o programador pode ter com efeitos colaterais e
@@ -472,7 +680,7 @@
 
 <span class="kw">use </span>interfaces::cli;
 
-<span class="doccomment">/// Função geral do código, apenas chama a [função de login da interface cli](cli::login_menu)
+<span class="doccomment">/// Função geral do código, apenas chama a [função de iniciar a interface cli](cli::init)
 </span><span class="kw">fn </span>main() {
     cli::init();
 }

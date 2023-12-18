@@ -1,3 +1,5 @@
+use std::{io::stdin, path::Path};
+use crate::{types::Entry, persistency::{save_data_to_disk, read_data_from_disk}, suggest_password::suggest_strong_password, encryption::generate_key};
 
  ///
 /// Inicialização do Gerenciador de Senhas
